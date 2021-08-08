@@ -1,0 +1,35 @@
+<!-- Main top section of the content. -->
+<div class="row align-items-center wow fadeInUp" data-wow-duration="2s">
+    <div class="col-md-12">
+        <div class="bg-transparent mt-3 mt-sm-1 mt-lg-n4">
+            <h2 class="text-highlight">{{ history_itemtxt1 }}</h2>
+        </div>
+        <hr class="space">
+        <div class="list-content text-left">
+            <p>{{ history_itemtxt2 }}</p>            
+            <a href="{{ url_for('thankyou') }}" class="btn btn-site">Thank You</a>
+        </div>
+    </div>
+</div>
+<hr class="p4line-space">
+<div class="row flex-column-reverse flex-md-row align-items-center wow fadeInLeft" data-wow-duration="2s">
+    <div class="col-md-6">
+        <div class="list-content text-left">
+            <p>{{ history_itemtxt3 }}</p>
+            <a href="{{ url_for('results') }}" class="btn btn-site">Learn More</a>
+        </div>
+    </div>
+    <div class="col-md-6 pl-md-4 text-center">
+        <img src="{{ url_for('static', filename='images/History_Timeline_SFF.jpg') }}" class="img-fluid" alt=""/>
+    </div>
+</div>
+<!-- <hr class="p4line-space"> -->
+<div class="row flex-column-reverse flex-md-row align-items-center wow fadeInLeft" data-wow-duration="2s">
+    <div class="col-md-12">
+        <div class="list-content text-left">
+            <p>{{ history_itemtxt4 }}</p>
+            <p>{{ history_itemtxt5 }}</p>
+            <a href="{{ url_for('joinin') }}" class="btn btn-site">Join In</a>
+        </div>
+    </div>
+</div>

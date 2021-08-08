@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+{% block title %}
+head
+{% endblock %}
+
+{% block head01 %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+{% endblock %}
+
+{% block head02 %}
+  .dropbtn {color: black;padding-top: 3px;padding-left: 16px;padding-right: 16px;font-size: 12px;border: none;cursor: pointer;height: 50px;position: relative;display: inline-block;border-radius: 22px;background-color: rgba(216,216,216,1);}
+  .dropbtn:hover {background-color: rgba(196,196,196,1);}
+  .dropbtn:focus {background-color: rgba(176,176,176,1);}
+  .dropdown {position: relative;display: inline-block;min-width: 20px;}
+  .dropdown-content {display: none;position: absolute;background-color: #ededed;min-width: 160px;overflow: auto;box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);z-index: 1;}
+  .dropdown-content a {color: black;padding: 12px 5px;text-decoration: none;display: block;}
+  .dropdown a:hover {background-color: #ddd;}
+  .dropdown-submenu {position: relative;}
+  .menubar {background-color: rgba(240,240,240,1);color: black;height: 69px;}
+  .namediv {float: left;}
+  .namediv::after {content: "";clear: both;display: table;}
+{% endblock %}
+
+{% block body01 %}
+<div id="namediv" class="col-12-12 menubar">
+  <div class="dropdown col-12-1 menubar" style="font-weight:500;padding-top:9px;padding-left:10px;">
+    <button class="dropbtn" data-toggle="dropdown"><i class="fa fa-bars"></i> Menu</button>
+    <ul class="dropdown-menu" style="min-width:180px;">
+      <li><a tabindex="-1" href="{{ url_for('home') }}">Home</a></li>
+    
+      <li class="dropdown-submenu">
+        <a class="test" style="white-space:pre-wrap;" tabindex="-1" href="{{ url_for('why') }}">  Why <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a tabindex="-1" href="{{ url_for('why') }}">Why?</a></li>
+          <li><a style="white-space:pre-wrap;" tabindex="-1" href="{{ url_for('earlyyears') }}">  Early Years</a></li>
+          <li><a style="white-space:pre-wrap;" tabindex="-1" href="{{ url_for('parenting') }}">  Parenting</a></li>
+          <li><a style="white-space:pre-wrap;" tabindex="-1" href="{{ url_for('thechallenge') }}">  The challenge</a></li>
+          <li><a style="white-space:pre-wrap;" tabindex="-1" href="{{ url_for('opportunity') }}">  Opportunity</a></li>
+<!--          <li class="dropdown-submenu">
+            <a class="test" href="#">Another dropdown <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">3rd level dropdown</a></li>
+              <li><a href="#">3rd level dropdown</a></li>
+            </ul>
+          </li>   Save this block in case we ever want a 4th level menu. -->
+        </ul>
+      </li>
+      
+      <li class="dropdown-submenu">
+        <a class="test" style="white-space:pre-wrap;" tabindex="-1" href="{{ url_for('ourwork') }}">  Our Work <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a tabindex="-1" href="{{ url_for('ourwork') }}">Our Work <span class="caret"></span></a></li>
+          <li><a style="white-space:pre-wrap;" tabindex="-1" href="{{ url_for('history') }}">   History</a></li>
+          <li><a style="white-space:pre-wrap;" tabindex="-1" href="{{ url_for('activities') }}">   Activities</a></li>
+          <li><a style="white-space:pre-wrap;" tabindex="-1" href="{{ url_for('possibilities') }}">   Possibilities</a></li>
+          <li><a style="white-space:pre-wrap;" tabindex="-1" href="{{ url_for('joinin') }}">   Join In</a></li>
+<!--          <li class="dropdown-submenu">
+            <a class="test" href="#">Another dropdown <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">3rd level dropdown</a></li>
+              <li><a href="#">3rd level dropdown</a></li>
+            </ul>
+          </li>   Save this block in case we ever want a 4th level menu.
+          <li><a tabindex="-1" href="{{ url_for('possibilities') }}">Possibilities- lavender & thistle</a></li>     -->
+        </ul>
+      </li>
+    
+      <li class="dropdown-submenu">
+        <a class="test" style="white-space:pre-wrap;" tabindex="-1" href="{{ url_for('results') }}">  Results <span class="caret"></span></a>
+        <ul class="dropdown-menu" style="min-width:217px;">
+          <li><a tabindex="-1" href="{{ url_for('results') }}">Results </a></li>
+          <li><a style="white-space:pre-wrap;" tabindex="-1" href="{{ url_for('phase1') }}">   Phase 1 Report</a></li>
+          <li><a style="white-space:pre-wrap;" tabindex="-1" href="{{ url_for('statestandards') }}">   State Standards</a></li>
+          <li><a style="white-space:pre-wrap;" tabindex="-1" href="{{ url_for('questionnaire') }}">   Questionnaire</a></li>
+          <li><a style="white-space:pre-wrap;" tabindex="-1" href="{{ url_for('curriculum') }}">   Curriculum</a></li>
+          <li><a style="white-space:pre-wrap;" tabindex="-1" href="{{ url_for('whatlearned') }}">   What We Learned</a></li>
+<!--          <li class="dropdown-submenu">
+            <a class="test" href="#">Another dropdown <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">3rd level dropdown</a></li>
+              <li><a href="#">3rd level dropdown</a></li>
+            </ul>
+          </li>   Save this block in case we ever want a 4th level menu.
+          <li><a tabindex="-1" href="{{ url_for('possibilities') }}">Possibilities- lavender & thistle</a></li>     -->
+        </ul>
+      </li>
+  
+      <li class="dropdown-submenu">
+        <a class="test" style="white-space:pre-wrap;" tabindex="-1" href="{{ url_for('grants') }}">  Grants <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a tabindex="-1" href="{{ url_for('grants') }}">Grants </a></li>
+          <li><a style="white-space:pre-wrap;" tabindex="-1" href="{{ url_for('whyapply') }}">   Why apply?</a></li>
+          <li><a style="white-space:pre-wrap;" tabindex="-1" href="{{ url_for('focus') }}">   Focus</a></li>
+          <li><a style="white-space:pre-wrap;" tabindex="-1" href="{{ url_for('details') }}">   Details</a></li>
+          <li><a style="white-space:pre-wrap;" tabindex="-1" href="{{ url_for('shareidea') }}">   Share your idea</a></li>
+          <li><a style="white-space:pre-wrap;" tabindex="-1" href="{{ url_for('whatexpect') }}">   What to expect</a></li>
+<!--          <li class="dropdown-submenu">
+            <a class="test" href="#">Another dropdown <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">3rd level dropdown</a></li>
+              <li><a href="#">3rd level dropdown</a></li>
+            </ul>
+          </li>   Save this block in case we ever want a 4th level menu.
+          <li><a tabindex="-1" href="{{ url_for('possibilities') }}">Possibilities- lavender & thistle</a></li>     -->
+        </ul>
+      </li>
+  
+      <li class="dropdown-submenu">
+        <a class="test" style="white-space:pre-wrap;" tabindex="-1" href="{{ url_for('about') }}">  About <span class="caret"></span></a>
+        <ul class="dropdown-menu" style="min-width:217px;">
+          <li><a tabindex="-1" href="{{ url_for('about') }}">About </a></li>
+          <li><a style="white-space:pre-wrap;" tabindex="-1" href="{{ url_for('goal') }}">   Goal</a></li>
+          <li><a style="white-space:pre-wrap;" tabindex="-1" href="{{ url_for('thankyou') }}">   Thank You</a></li>
+          <li><a style="white-space:pre-wrap;" tabindex="-1" href="{{ url_for('board') }}">   Board of Directors</a></li>
+          <li><a style="white-space:pre-wrap;" tabindex="-1" href="{{ url_for('references') }}">   References</a></li>
+          <li><a style="white-space:pre-wrap;" tabindex="-1" href="{{ url_for('contactus') }}">   Contact Us</a></li>
+          <li><a style="white-space:pre-wrap;" tabindex="-1" href="{{ url_for('terms') }}">   Terms of Use</a></li>
+<!--          <li class="dropdown-submenu">
+            <a class="test" href="#">Another dropdown <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">3rd level dropdown</a></li>
+              <li><a href="#">3rd level dropdown</a></li>
+            </ul>
+          </li>   Save this block in case we ever want a 4th level menu.
+          <li><a tabindex="-1" href="{{ url_for('possibilities') }}">Possibilities- lavender & thistle</a></li>     -->
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="col-12-10 menubar">
+    <h4 style="height: 55px;border-radius:18px;font-family:trebuchet MS;text-transform:uppercase;font-size:17px;font-weight:600;letter-spacing:1px;padding:19px;margin:7px 60px 0px 60px;text-align:center;background-color:rgba(220,220,220,1);">{{ projname }}</h4>
+  </div>
+</div>
+{% endblock %}
+
+{% block script02 %}
+$(document).ready(function(){
+  $('.dropdown-submenu a.test').on("click", function(e){
+    $(this).next('ul').toggle();
+    e.stopPropagation();
+    e.preventDefault();
+  });
+});
+{% endblock %}

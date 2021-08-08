@@ -1,0 +1,106 @@
+{% extends "layout.html" %}
+{% block title %}
+shareidea
+{% endblock %}
+
+{% block styles %}
+<link href="{{ url_for('static', filename='css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    {% include 'content/shareidea_cont.html' %}
+{% endblock %}
+
+
+{% block bottom_scripts %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap-datepicker.min.js') }}"></script> 
+<script type="text/javascript">
+    $(document).ready(function() {
+        
+        $('.datepicker').datepicker();
+        $('.btn-revise-idea, .btn-send-docs').click(function(){
+            document.getElementById("findProjectForm").reset();
+            
+            var reqtype = $(this).data('type');            
+            $('#reqtype').val(reqtype);            
+
+            $('#findProjectModal').modal('show');
+            $('.alert_msg').html('');
+            $('.alert').hide();            
+        });
+
+        $('#findProjectForm').submit(function (e) {
+            var url = "{{ url_for('findproject') }}"; // send the form data here.
+            $('.btn-loading').show();
+            $('.alert_msg').html('');
+            $('.alert').hide();
+            $.ajax({
+                type: "GET",
+                url: url,
+                data: $('#findProjectForm').serialize(),
+                success: function (resp) {                    
+                    if(resp.status == 'success'){
+                        $('.alert-success').find('.alert_msg').html(resp.message);
+                        $('.alert-success').show();                        
+                        window.location.href = resp.url;                         
+                    } else {                            
+                        $('.alert-danger').find('.alert_msg').html(resp.message);
+                        $('.alert-danger').show();
+                    }
+                    $('.btn-loading').hide();
+                }
+            });
+            
+            e.preventDefault(); // block the traditional submission of the form.
+        });
+        
+    });
+
+    function onlyNumbers(e, ele){
+        var keynum;
+        var keychar;
+
+        if(window.event){  //IE
+            keynum = e.keyCode;
+        }
+        if(e.which){ //Netscape/Firefox/Opera
+            keynum = e.which;
+        }
+        
+        console.log(event.keyCode);
+
+        if(keynum == 8 || keynum == 9 || keynum == 46 || (keynum >= 35 && keynum <= 40) ||
+        (keynum >= 96 && keynum <= 105) || (keynum >= 48 && keynum <= 57) ) {                
+            
+            if (ele.value.indexOf(".") !== -1 && ( (keynum >= 96 && keynum <= 105) || (keynum >= 48 && keynum <= 57) ))
+            {
+                var number = ele.value.split('.');
+                console.log(number[1].length);
+                if (number.length == 2 && number[1].length > 1)
+                    return false;
+            }
+
+            return true;
+        }
+
+        
+        
+        if(keynum == 110 || keynum == 190){
+            var checkdot=document.getElementById(ele.id).value;
+            var i=0;
+            for(i=0;i<checkdot.length;i++){
+                if(checkdot[i]=='.')return false;
+            }
+            
+            if(checkdot.length==0)document.getElementById(ele.id).value='0';
+            return true;
+        }
+
+        
+        keychar = String.fromCharCode(keynum);
+
+        return !isNaN(keychar);
+    }
+
+</script>
+{% endblock %}

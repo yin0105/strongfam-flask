@@ -1,0 +1,65 @@
+{% set nav_why_items = ['why','earlyyears','parenting','thechallenge','opportunity'] %}
+{% set nav_ourwork_items = ['ourwork','history','activities','joinin'] %}
+{% set nav_results_items = ['results','phase1','statestandards','questionnaire','curriculum','whatlearned'] %}
+{% set nav_grants_items = ['grants','whyapply','focus','details','shareidea','whatexpect'] %}
+{% set nav_about_items = ['about','goal','thankyou','board','references','contactus','terms'] %}
+
+<ul class="navbar-nav sm sm-blue ml-auto" data-sm-options="{ collapsibleBehavior: 'accordion-toggle'}" >                
+  <li class="nav-item"><a class="nav-link {% if request.endpoint=='home' %}active{%endif %}" data-toggle="none" href="{{ url_for('home') }}">Home</a></li>
+  <li class="nav-item dropdown"><a class="nav-link {% if request.endpoint in nav_why_items %}active{%endif %}" href="javascript:void(0);"> Why?</a>
+    <ul class="dropdown-menu wow fadeIn">
+      <li><a class="dropdown-item {% if request.endpoint=='why' %}active{%endif %}" href="{{ url_for('why') }}">Why?</a></li>
+      <li><a class="dropdown-item {% if request.endpoint=='earlyyears' %}active{%endif %}" href="{{ url_for('earlyyears') }}">Early Years</a></li>
+      <li><a class="dropdown-item {% if request.endpoint=='parenting' %}active{%endif %}" href="{{ url_for('parenting') }}">Parenting</a></li>
+      <li><a class="dropdown-item {% if request.endpoint=='thechallenge' %}active{%endif %}" href="{{ url_for('thechallenge') }}">The challenge</a></li>
+      <li><a class="dropdown-item {% if request.endpoint=='opportunity' %}active{%endif %}" href="{{ url_for('opportunity') }}"> Opportunity</a></li>
+      <!--
+      <li class="dropdown"><a class="dropdown-item" href="#">level 3 menu</a>
+        <ul class="dropdown-menu wow fadeIn">
+          <li><a class="dropdown-item" href="#">dummy menu 1</a></li>
+          <li><a class="dropdown-item" href="#">dummy menu 2</a></li>
+          <li><a class="dropdown-item" href="#">dummy menu 3</a></li>
+        </ul>
+      </li>
+      -->
+    </ul>
+  </li>
+  <li class="nav-item dropdown"><a class="nav-link {% if request.endpoint in nav_ourwork_items %}active{%endif %}" href="javascript:void(0);"> Our Work</a>
+    <ul class="dropdown-menu wow fadeIn">
+      <li><a class="dropdown-item {% if request.endpoint=='ourwork' %}active{%endif %}" href="{{ url_for('ourwork') }}">Our Work</a></li>
+      <li><a class="dropdown-item {% if request.endpoint=='history' %}active{%endif %}" href="{{ url_for('history') }}">History</a></li>
+      <li><a class="dropdown-item {% if request.endpoint=='activities' %}active{%endif %}" href="{{ url_for('activities') }}">Activities</a></li>
+      <li><a class="dropdown-item {% if request.endpoint=='joinin' %}active{%endif %}" href="{{ url_for('joinin') }}"> Join In</a></li>                  
+    </ul>
+  </li>
+      <li class="nav-item dropdown"><a class="nav-link {% if request.endpoint in nav_results_items %}active{%endif %}" href="javascript:void(0);">Results</a>
+    <ul class="dropdown-menu wow fadeIn">
+      <li><a class="dropdown-item {% if request.endpoint=='results' %}active{%endif %}" href="{{ url_for('results') }}">Results</a></li>
+      <li><a class="dropdown-item {% if request.endpoint=='phase1' %}active{%endif %}" href="{{ url_for('phase1') }}">Phase 1 Report</a></li>
+      <li><a class="dropdown-item {% if request.endpoint=='statestandards' %}active{%endif %}" href="{{ url_for('statestandards') }}">State Standards</a></li>
+      <li><a class="dropdown-item {% if request.endpoint=='questionnaire' %}active{%endif %}" href="{{ url_for('questionnaire') }}"> Questionnaire</a></li>                  
+      <li><a class="dropdown-item {% if request.endpoint=='curriculum' %}active{%endif %}" href="{{ url_for('curriculum') }}"> Curriculum</a></li>                  
+      <li><a class="dropdown-item {% if request.endpoint=='whatlearned' %}active{%endif %}" href="{{ url_for('whatlearned') }}"> What We Learned </a></li>                                                    
+    </ul>
+  </li>
+    
+      <li class="nav-item dropdown"><a class="nav-link {% if request.endpoint in nav_grants_items %}active{%endif %}" href="javascript:void(0);">Grants</a>
+    <ul class="dropdown-menu wow fadeIn">
+      <li><a class="dropdown-item {% if request.endpoint=='whyapply' %}active{%endif %}" href="{{ url_for('whyapply') }}">Why apply?</a></li>
+      <li><a class="dropdown-item {% if request.endpoint=='focus' %}active{%endif %}" href="{{ url_for('focus') }}">Focus</a></li>
+      <li><a class="dropdown-item {% if request.endpoint=='details' %}active{%endif %}" href="{{ url_for('details') }}"> Details</a></li>                  
+      <li><a class="dropdown-item {% if request.endpoint=='shareidea' %}active{%endif %}" href="{{ url_for('shareidea') }}"> Sharing my idea</a></li>                  
+      <li><a class="dropdown-item {% if request.endpoint=='whatexpect' %}active{%endif %}" href="{{ url_for('whatexpect') }}"> What to expect </a></li>                                                    
+    </ul>
+  </li>
+      <li class="nav-item dropdown"><a class="nav-link {% if request.endpoint in nav_about_items %}active{%endif %}" href="javascript:void(0);">About</a>
+    <ul class="dropdown-menu wow fadeIn">
+      <li><a class="dropdown-item {% if request.endpoint=='goal' %}active{%endif %}" href="{{ url_for('goal') }}">Goal</a></li>
+      <li><a class="dropdown-item {% if request.endpoint=='thankyou' %}active{%endif %}" href="{{ url_for('thankyou') }}">Thank You</a></li>
+      <li><a class="dropdown-item {% if request.endpoint=='board' %}active{%endif %}" href="{{ url_for('board') }}"> Board of Directors</a></li>                   
+      <li><a class="dropdown-item {% if request.endpoint=='references' %}active{%endif %}" href="{{ url_for('references') }}"> References </a></li>                                                    
+      <li><a class="dropdown-item {% if request.endpoint=='contactus' %}active{%endif %}" href="{{ url_for('contactus') }}"> Contact Us </a></li>                                                    
+      <li><a class="dropdown-item {% if request.endpoint=='terms' %}active{%endif %}" href="{{ url_for('terms') }}"> Terms of Use  </a></li>                                                    
+    </ul>
+  </li>
+</ul>

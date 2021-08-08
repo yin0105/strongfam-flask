@@ -1,0 +1,68 @@
+<!-- Main top section of the content. -->
+<div class="row align-items-center wow fadeInUp" data-wow-duration="2s">
+    <div class="col-md-12 text-center">
+        <div class="bg-transparent mt-3 mt-sm-1 mt-lg-n4">
+            <h2 class="text-highlight">OPPORTUNITY</h2>
+        </div>
+    </div>
+</div>
+<hr class="space">
+<div class="row row flex-column-reverse flex-md-row align-items-center wow fadeInLeft" data-wow-duration="2s">
+    <div class="col-md-6">
+        <div class="list-content text-left">
+            <h2 class="sub-heading">{{ opportunity_itemtxt1 }}</h2>
+            <p>{{ opportunity_itemtxt2 }}</p>
+        </div>
+    </div>
+    <div class="col-md-6 text-center">
+        <img src="{{ url_for('static', filename='images/students_learning_parenting.jpg') }}" class="img-fluid" alt=""/>
+    </div>
+</div>
+<hr class="space">
+<div class="row align-items-center wow fadeInRight" data-wow-duration="2s">
+    <div class="col-md-6 text-center">
+        <img src="{{ url_for('static', filename='images/students_learning_parenting_2.jpg') }}" class="img-fluid" alt=""/>
+    </div>
+    <div class="col-md-6">
+        <div class="list-content">
+            <h2 class="sub-heading">{{ opportunity_itemtxt3 }}</h2>
+            <p>{{ opportunity_itemtxt4 }}</p>
+        </div>
+    </div>
+</div>
+<hr class="space">
+<div class="row flex-column-reverse flex-md-row align-items-center wow fadeInLeft" data-wow-duration="2s">
+    <div class="col-md-6 text-center">
+        <div class="list-content text-left">
+            <h2 class="sub-heading">{{ opportunity_itemtxt5 }}</h2>
+            <p>{{ opportunity_itemtxt6 }}</p>
+            <p class="p-2 text-highlight-italic f18-bold" style="margin-left:-60px;">{{ opportunity_itemtxt7 }}</p>
+        </div>
+    </div>
+    <div class="col-md-6 text-center">
+        <img src="{{ url_for('static', filename='images/high_school_seniors_cheering.jpg') }}" class="img-fluid" alt=""/>
+    </div>
+</div>
+<div class="row flex-column-reverse flex-md-row align-items-center wow fadeInLeft" data-wow-duration="2s">
+    <div class="col-md-4 text-center">
+        <img src="{{ url_for('static', filename='images/baby_learning.jpg') }}" class="img-fluid" alt=""/>
+    </div>
+    <div class="col-md-8 mt-1">
+        <div class="list-content text-left" style="overflow:visible;">
+            <p class="p-1 text-highlight-italic f18-bold ml-n5">... and questions remain</p>            
+            <ul class="col-md-12 mb-5" style="list-style-type:circle;">
+              <li class="details-list">{{ opportunity_itemtxt8 }}</li>
+              <li class="details-list">{{ opportunity_itemtxt9 }}</li>
+              <li class="details-list">{{ opportunity_itemtxt10 }}</li>
+              <li class="details-list">{{ opportunity_itemtxt11 }}</li>
+              <li class="details-list">{{ opportunity_itemtxt12 }}</li>
+              <li class="details-list">{{ opportunity_itemtxt13 }}</li>
+              <div class="details-list mt-4 ml-n3">{{ opportunity_itemtxt14 }}</div>
+              <a href="{{url_for('ourwork') }}" class="btn btn-site mt-4">Visit Our Work</a>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,267 @@
+/* CSS Document */
+
+/* All animations will take twice as long to finish */
+:root {
+  --animate-duration: 2s;
+}
+
+/* Only this element will take half the time to finish */
+.my-element {
+  --animate-duration: 0.5s;
+}
+
+
+html *,
+html *:before,
+html *:after {
+  box-sizing: border-box;
+}
+html, body { font-family: 'Open Sans'; font-weight: 400; font-style: normal; color: #333; font-size: 16px;}
+body { padding-top: 76px; }
+p {line-height:1.421;}
+strong {}
+a, a:focus, a:hover {outline: 0px;	text-decoration: none; color:#0077c8;}
+.form-control::placeholder { color: #a8a8a8;}
+.form-control::-moz-placeholder { color: #a8a8a8;}
+.form-control::-webkit-placeholder { color: #a8a8a8;}
+select.form-control { color: #a8a8a8;}
+.form-control {
+  background-color: lavender;
+}
+
+.heading {
+  font-size: 32px;
+  position: relative;
+  margin-bottom: 60px;
+  text-align: center;  
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+}
+
+.text-highlight {color: #0077c8; font-weight: 700; font-size:28px; text-align: center;}
+
+.sub-heading {    
+    font-size:28px;
+    margin-bottom:1rem;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    color:#0077c8;
+}
+
+.btn_foot {
+  display: inline-block;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.2;
+  border-radius: 1.0rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn {
+  border-radius: 50px;
+  color: #fff;
+/*  font-family: 'Raleway', sans-serif; */
+  font-family: arial;
+  font-weight: 600;
+  padding: 0.5rem 1.5rem;
+}
+
+.btn.btn-small {
+  padding: 3px 15px;
+  font-size: 12px;
+}
+
+.btn-site {
+  background-color: #25bfbb;
+  border-color: #25bfbb;
+  color: #fff;
+  padding: 3px 15px;
+  font-size: 12px;
+}
+.btn-site:hover {background-color: transparent; color: #25bfbb;}
+
+.btn-blue {  background-color: #17a2b8; border-color: #17a2b8;}
+.btn-blue:hover {background-color: transparent; color: #17a2b8;}
+
+.btn-yellow {  background-color: #ffc107; border-color: #ffc107;}
+.btn-yellow:hover {background-color: transparent; color: #ffc107;}
+
+.btn-green {  background-color: #28a745; border-color: #28a745;}
+.btn-green:hover {background-color: transparent; color: #28a745;}
+
+.btn-red {  background-color: #dc3545; border-color: #dc3545;}
+.btn-red:hover {background-color: transparent; color: #dc3545;}
+
+
+.header-main .navbar-light .navbar-nav .nav-link {color: #333;}
+.header-main .navbar-light .navbar-nav .nav-link:hover {color:#25bfbb;}
+.header-main .navbar-light .navbar-nav .show > .nav-link, .header-main .navbar-light .navbar-nav .active > .nav-link,
+.header-main .navbar-light .navbar-nav .nav-link.show, .header-main .navbar-light .navbar-nav .nav-link.active {
+    color:#25bfbb;
+    border-bottom:solid 2px #25bfbb;
+}
+.header-main .navbar-nav .dropdown-menu{visibility: visible !important;}
+
+.header-main {background-color: #fff;
+	-webkit-box-shadow: 0 0 15px 3px rgba(0,0,0,.1);
+	-moz-box-shadow: 0 0 15px 3px rgba(0,0,0,.1);
+	box-shadow: 0 0 15px 3px rgba(0,0,0,.1);
+    position: relative;
+    z-index: 3;
+    transition: 0.3s all ease;
+}
+.header-main .navbar-light .navbar-nav .nav-item {padding: 0 15px;}
+.header-main .navbar-light .btn-outline-primary { padding: 8px 15px;}
+.header-main .navbar-light .btn-outline-primary i {margin-right: 5px;}
+.btn-outline-primary {color: #0077c8; border-color: #0077c8;}
+.btn-outline-primary:hover { color: #fff;   background-color: #0077c8;  border-color: #0077c8;}
+
+#header-navbar .dropdown-item {font-size: 15px;}
+#header-navbar .navbar-nav {font-family:'Raleway'; font-weight:600;}
+
+
+
+.footer {background-color: #0077c8; padding: 60px 0; color: #fff;}
+.footer .site-info p{font-size: 15px;}
+.footer h3 {font-size: 24px; font-family:'Raleway'; margin-bottom: 30px; font-weight:600; }
+.footer h5 {    font-weight: normal;    line-height: 1.63;    font-size: 18px;}
+.footer h5 i{font-size: 30px;}
+
+.footer .quick-link ul {  list-style: none; padding-left: 0; margin-bottom: 30px;}
+/*.footer .quick-link ul li:before { content: "\f054"; font-family: "Font Awesome 5 Free"; font-size: 12px; font-weight: 900; position: absolute; left: 0; color: #fff; transition: 0.2s all ease;}*/
+/*.footer .quick-link ul li:hover:before {left:7px;}*/
+.footer .quick-link ul li {position: relative; padding-left:0px; margin-bottom:7px;}
+.footer .quick-link ul li a {color: #fff;}
+.footer .quick-link ul li a:hover {text-decoration: underline;}
+
+.subscribe p {font-size: 15px;}
+.subscribe .form-control {border-color:#0077c8; height: calc(2em + 0.75rem + 2px); border-radius:0px;}
+.subscribe .btn-primary {background-color: #25bfbb; border-color:#25bfbb;  border-radius:0px;}
+
+.footer-bottom {background-color: #00558e; padding: 30px 0; color: #fff;}
+.footer-bottom-inner {display: flex; justify-content:center; align-items: center;}
+.footer-bottom-inner address {margin-bottom: 0; font-size:14px;}
+
+.footer-bottom-inner .social {display:flex; margin-bottom: 0; }
+.footer-bottom-inner .social li {padding: 0 11px;}
+.footer-bottom-inner .social li a{color: #fff; font-size: 32px;}
+.footer-bottom-inner .social li a:hover {opacity: 0.5;}
+
+.banner {
+/*background-image: url(../images/banner-img.png); */
+  background-position: center center;
+  background-attachment: scroll;
+  padding-top: 0em;
+  padding-bottom: 0em;
+  background-size: cover;
+  position: relative;
+ 
+}
+.banner-inner {    position: relative;min-height: 400px;}
+.banner-text {position: relative; bottom: 0; padding:10px 40px; color: #fff; font-family:'Raleway'; background:rgba(0,0,0,0.5);}
+.banner-text h1 { text-shadow:0px 0px 5px #000, 0px 0px 15px #000; font-weight:600; font-variant: small-caps; font-size:36px;}
+.banner-text h2 { text-shadow:0px 0px 5px #000, 0px 0px 15px #000;font-weight:400; font-size: 26px;}
+.banner::after {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    content: "";
+    background-color: rgba(0, 0, 0, 0.2);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.top-right1x {
+    position: absolute;
+    top: 23px;
+    right: 55px;
+    font-size: 55px;
+    z-index: 2;
+    text-shadow: 2px 2px 4px #000;
+
+}
+.top-right0x {
+    position: absolute;
+    top: 26px;
+    right: 60px;
+    font-size: 50px;
+    color: white;
+    position: absolute;
+    white-space: pre-wrap;
+    background-color: transparent;
+    font-style: italic;
+    font-weight: 700;
+    font-family: "Times New Roman", Times, serif;
+
+}
+.bottom-left0x {
+    bottom: 50px;
+    left: 30px;
+    font-size: 60px;
+    color: white;
+    position: absolute;
+    white-space: pre-wrap;
+    background-color: transparent;
+    font-weight: 600;
+    font-variant: small-caps;
+    z-index: 9;
+    text-shadow: 2px 2px 4px #000;
+}
+
+
+
+.mid-content-block {padding:80px 0;}
+.tilt-style {color: #0077c8; font-weight: 700; font-size:94px; text-align: center;  -ms-transform: rotate(-17deg);
+    transform: rotate(-17deg);}
+
+.space {margin-top: 3.5rem;    margin-bottom: 3rem; border-top: 1px solid rgba(0, 0, 0, 0.4);}
+.list-content {padding: 30px 30px; background-color:#fafafa;     box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.05) inset, 0 3px 0 -2px #FFFFFF, 0 4px 0 -2px #CCCCCC, 0 6px 0 -3px #FFFFFF, 0 8px 6px -2px rgba(0, 0, 0, 0.2);
+    border: solid 1px #ccc; overflow: hidden;}
+
+.list-content .btn-site {float: right;}
+.list-content p {line-height: 1.6;}
+
+.flip-block { flex-direction:row-reverse;}
+.flip-block .list-content {text-align: right;}
+.header-main.sticky {position: fixed; top: 0; z-index: 9999; width: 100%;}
+.header-main .navbar-brand {
+  transition: 0.3s all ease;
+}
+.header-main .navbar-brand img {transition: 0.3s all ease; height: 40px;}
+
+.header-main.stickyscroll .navbar-brand img {height: 32px; transition: 0.3s all ease;}
+.bg-gray {
+  background-color: #f0f0f0;
+}
+
+.loading{
+  position: fixed;
+  top: 0;
+  background: rgba(255,255,255,0.8);
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding-top: 200px;
+  display: none;
+}
+.loading .spinner-border { width: 5rem; height: 5rem;}
+form .required label:after {
+  content:"*";color:red;
+}
+.error_list {
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: underline;
+}

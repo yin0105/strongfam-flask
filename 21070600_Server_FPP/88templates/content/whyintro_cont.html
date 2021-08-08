@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+{% block title %}
+whyintro_cont
+{% endblock %}
+
+<!--
+See "Std rept template instr 201211 nn.docs" in \10 Documents\20 Develop\20-70 CSS\ for full details on using
+this report form.
+-->
+
+{% block head02 %}
+  .top-right05 {color:dodgerblue;position:absolute;font-weight:700;-ms-transform: rotate(-17deg); transform: rotate(-17deg);}
+  .top-right05a {position:absolute;bottom:0px; right:280px;font-size:98px;background-color: none;}
+  /* Parms for the images themselves */
+  .imgm {padding:0px;margin:0px; width:90%; max-height:700px;}
+  .img1 {padding:0px;margin:0px; width:95%; max-height:500px;}
+  .img2 {padding:0px;margin:0px; width:105%; max-height:500px;}
+  .img3 {padding:0px;margin:0px; width:40%; max-height:500px;}
+  .img4 {padding:0px;margin:0px; width:110%; max-height:500px;}
+  /* Parms for the large box containing the pics */
+  .img-boxm {padding:0px 30px;margin:80px 0px;position:relative;}
+  .img-box1 {padding:0px;margin:0px 0px 0px 120px;}
+  .img-box2 {padding:0px;margin:1px 0px 0px 9px;}
+  .img-box3 {padding:0px;margin:0px 0px 0px 40px;}
+  .img-box4 {padding:0px;margin:60px 0px 60px 83px;}
+  /* Parms for the large text box */
+  .txt-box1 {padding:0px;margin:26px 0px 0px 36px;}
+  .txt-box2 {padding:0px;margin:23px 0px 0px 140px;}
+  .txt-box3 {padding:0px;margin:17px 0px 0px 40px;}
+  .txt-box4 {padding:0px;margin:-15px 0px 0px 14px;}
+  .btn-learn {width: 120px; float:right; margin-right:30px; background-color:rgba(227,222,212,.7);}
+
+  @media screen and (max-width: 1600px) {
+/*  .test899 {background-color:Wheat;} */
+  .top-right05a {position:absolute;bottom:20px; right:180px;font-size:94px;}
+  .img-box1 {padding:0px;margin:0px 0px 0px 70px;}
+  .img-box2 {padding:0px;margin:12px 0px 0px 23px;}
+  .img-box3 {padding:0px;margin:13px 0px 13px 50px;}
+  .img-box4 {padding:0px;margin:60px 0px 0px 40px;}
+  .txt-box1 {padding:0px;margin:32px 0px 0px 51px;} /* was margin:47px 35px */
+  .txt-box2 {padding:0px;margin:28px 0px 0px 90px;}
+  .txt-box3 {padding:0px;margin:40px 0px 0px 40px;}
+  .txt-box4 {padding:0px;margin:-11px 0px 0px 30px;}
+  }
+  @media screen and (max-width: 1200px) { 
+/*  .test899 {background-color:MistyRose;} */
+  .top-right05a {position:absolute;bottom:70px; right:90px;font-size:76px;}
+  .img1 {padding:0px;margin:0px 0px; width:85%;}
+  .img2 {padding:0px;margin:40px 0px; width:85%;
+  .img-box1 {padding:0px;margin:0px 0px 0px 0px;}
+  .img-box2 {padding:0px;margin:30px 0px 30px 0px;}
+  .txt-box1 {padding:0px;margin:40px 0px 0px 36px;}
+  .txt1 {margin: 0px 0px 40px 0px;}
+  }
+  @media screen and (max-width: 900px) {
+/*  .test899 {background-color:Azure;} */
+  .top-right05a {position:absolute;bottom:110px; right:40px;font-size:64px;}
+  .img1 {padding:0px;margin:0px; width:75%; max-height:500px;}
+  .img-boxm {padding:0px 20px;margin:60px 0px;}
+  }
+  @media screen and (max-width: 650px) {
+/*  .test899 {background-color:Bisque;} */
+  .top-right05a {position:absolute;bottom:140px; right:30px;font-size:58px;}
+  }
+{% endblock %}
+
+{% block body03 %}
+<div class="col-48-1 sidecol"> </div> 
+<div class="col-24-23 border-gray mtb-25"><!-- Page container for main content with gray border -->
+
+  <!-- Main top content section. -->
+
+  <div class="col-12-12 img-boxm test899"> 
+    <div class="col-24-1 sidecol"> </div>
+    <div class="col-12-7 sidecol container"> 
+      <div class="vcenter-all">
+        <img class="imgm" src="../static/images/smiling_man_playing_with_daughter.jpg">
+      </div>
+    </div>
+    <div class="col-12-3"><h3 class="top-right05 top-right05a">Why? </h3></div>
+    <div class="col-24-1 sidecol"> </div>  
+  </div>
+  
+  <!-- First section divider --> 
+  <div class="col-12-12"><div class="section-divider mb-43"></div></div>  
+  
+  <!-- First section content -->
+<div class="no-border-bottom">-
+<div class="container">
+  <div class="col-12-12 vcenter-all">
+    <div class="col-12-5 txt-box1">
+      <h5 class="texthead">{{ home_paratexthead1 }}</h5>
+      <div class="col-12-12 sm-txt-body">
+        <p class="textbody">{{ home_paratextbody1 }}</p>
+        <div class="nav but1- btn-learn">
+          <a class="but1-" href="{{ url_for('earlyyears') }}">learn more</a>
+        </div>
+        <div class="col-12-12 nav-space"> </div> <!-- Adjusts the white space below the learn more button -->
+      </div>
+    </div>
+    <div class="col-12-5 img-box1"> <!-- Set the image block width & border sizes -->
+      <img class="col-12-11 img1" src="../static/images/young_boy_studying_butterfly.jpg">
+    </div>
+  </div>
+</div>
+</div>
+
+  <!-- Second section divider --> 
+  <div class="col-12-12"><div class="section-divider mt-45 mb-43"></div></div>  
+
+  <!-- Second section content - new version -->
+<div class="no-border-bottom">-
+<div class="container">
+  <div class="col-12-12 vcenter-all">
+    <div class="col-12-5 img-box2"> <!-- Set the image block width & border sizes -->
+      <img class="img2" src="../static/images/mother_holding_sleeping_baby.jpg">
+    </div>
+    <div class="col-12-5 txt-box2">
+      <h5 class="texthead">{{ home_paratexthead2 }}</h5>
+      <div class="col-12-12 sm-txt-body">
+       <p class="textbody">{{ home_paratextbody2 }}</p>
+        <div class="nav but1- btn-learn">
+          <a class="but1-" href="{{ url_for('parenting') }}">learn more</a>
+        </div>
+        <div class="col-12-12 nav-space"> </div> <!-- Adjusts the white space below the learn more button -->
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+  <!-- Third section divider --> 
+  <div class="col-12-12"><div class="section-divider mt-55 mb-73"></div></div>  
+
+  <!-- Third section content - new version -->
+<div class="no-border-bottom">-
+<div class="container">
+  <div class="col-12-12 vcenter-all test899">
+    <div class="col-12-6 img-box3"> <!-- Set the image block width & border sizes -->
+      <img class="col-12-11 img3" src="../static/images/baby_playing_with_picture_books.jpg">
+    </div>
+    <div class="col-12-4 txt-box3">
+      <h5 class="texthead">{{ home_paratexthead3 }}</h5>
+      <div class="col-12-12 sm-txt-body">
+       <p class="textbody">{{ home_paratextbody3 }}</p>
+        <div class="nav but1- btn-learn">
+          <a class="but1-" href="{{ url_for('thechallenge') }}">learn more</a>
+        </div>
+        <div class="col-12-12 nav-space"> </div> <!-- Adjusts the white space below the learn more button -->
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+  <!-- Fourth section divider --> 
+  <div class="col-12-12"><div class="section-divider mt-75 mb-53"></div></div>  
+
+  <!-- Fourth section content - new version -->
+<div class="no-border-bottom">-
+<div class="container">
+  <div class="col-12-12 vcenter-all">
+    <div class="col-12-5 txt-box4">
+      <h5 class="texthead" style="font-size:26px;">{{ home_paratexthead4 }}</h5>
+      <div class="col-12-12 sm-txt-body">
+       <p class="textbody">{{ home_paratextbody4 }}</p>
+        <div class="nav but1- btn-learn">
+          <a class="but1-" href="{{ url_for('opportunity') }}">learn more</a>
+        </div>
+        <div class="col-12-12 nav-space"> </div> <!-- Adjusts the white space below the learn more button -->
+      </div>
+    </div>
+    <div class="col-12-5 img-box4"> <!-- Set the image block width & border sizes -->
+      <img class="img4" src="../static/images/high_school_students_cheering.jpg">
+    </div>
+  </div>
+</div>
+</div>
+
+  <!-- Bottom space --> 
+  <div class="col-12-12"><div class="sidecol mtb-25;" style="font-size:39px;"> </div></div>  
+
+</div>
+<div class="col-48-1 sidecol"> </div>
+{% endblock %}

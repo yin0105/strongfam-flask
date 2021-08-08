@@ -1,0 +1,39 @@
+<footer class="footer wow fadeInUp" data-wow-duration="3s">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-12">
+                <div class="site-info">
+                    <img src="{{ url_for('static', filename='images/footer-logo.png') }}" class="mb-n1" alt="">                     
+                    <p class="mr-4 mt-4 mb-n4"> {{ footer_itemtxt1 }} </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-n3">
+                <div class="quick-link">
+                    <h3 class="ml-5">Contact Us</h3>
+                    <ul>
+                        <li> {{ projname }} </li>
+                        <li> {{ projaddr1 }} </li>
+                        <li> {{ projaddr2 }} </li>
+                        <li class="mt-3"> More ways: <a href="{{ url_for('contactus') }}" class="btn_foot btn-blue ml-4">Contact us</a></li>
+                        
+                     </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="subscribe">
+                    <h3 class="text-center">The Challenge</h3>
+                    <h5><i class="fas fa-quote-left"></i> {{ footer_itemtxt2 }} <i class="fas fa-quote-right ml-10"></i> </h5>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<section class="footer-bottom">
+    <div class="container">
+      <div class="footer-bottom-inner blank-space">
+        <address>
+        {{ copyrightmsg }}  <a href="{{ url_for('terms') }}" style="color: yellow;"> See here.</a>
+        </address>
+      </div>
+    </div>
+  </section>

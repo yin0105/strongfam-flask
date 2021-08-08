@@ -1,0 +1,121 @@
+<!-- Main top section of the content. -->
+<div class="row align-items-center wow fadeInUp" data-wow-duration="2s">
+    <div class="col-md-12">
+        <div class="bg-transparent mt-3 mt-sm-1 mt-lg-n4">
+            <h2 class="text-highlight">{{ joinin_itemtxt1 }}</h2>
+        </div>
+        <hr class="space">
+        <div class="list-content text-left pt-4 pt-md-3">
+            <p class="mt-2 mt-md-4"><em>{{ joinin_itemtxt2 }}</em></p>            
+        </div>
+    </div>
+</div>
+<hr class="space">
+<div class="row flex-column-reverse flex-md-row align-items-center wow fadeInLeft" data-wow-duration="2s">
+    <div class="col-md-4 pl-md-4 text-center">
+        <img src="{{ url_for('static', filename='images/researcher_working.jpg') }}" class="img-fluid" alt=""/>
+    </div>
+    <div class="col-md-4">
+        <div class="list-content text-left">
+            <h2 class="sub-heading">{{ joinin_itemtxt3 }}</h2>
+            <p>{{ joinin_itemtxt4 }}</p>
+            <a href="{{ url_for('whyapply') }}" class="btn btn-site">About grants</a>
+        </div>
+    </div>
+    <div class="col-md-4 pl-md-4 text-center">
+        <img src="{{ url_for('static', filename='images/researcher_dreaming.jpg') }}" class="img-fluid" alt=""/>
+    </div>
+</div>
+<hr class="space">
+<div class="row flex-column-reverse flex-md-row align-items-center wow fadeInLeft" data-wow-duration="2s">
+    <div class="col-md-6 pl-md-4 text-center">
+        <img src="{{ url_for('static', filename='images/school_administrators_teachers_cheering.jpg') }}" class="img-fluid" alt="" style="width:115%;"/>
+    </div>
+    <div class="col-md-6">
+        <div class="list-content text-left">
+            <h2 class="sub-heading">{{ joinin_itemtxt5 }}</h2>
+            <p class="blank-space"> </p>
+            <p>{{ joinin_itemtxt6 }}</p>
+<!--            
+            <div class="col-md-12 text-right pt-2">    
+                {% set emailto = "pilottest@strongfam.org" %}
+                {% set subject = "Action message initiated by SFF website visitor" %} 
+                {% set message = "Please send me more information about Harvard pilot testing." %}
+                {% set mailto = emailto + "?subject=" + subject + "?body=" + message %}
+                <a class="btn btn-site btn-email" href="mailto:{{ mailto }}">
+                    <i class="fas fa-envelope fa-md"></i> <span class="fa-md">Email to learn more about Harvard pilot testing</span></a>
+            </div>
+-->
+        </div>
+    </div>
+</div>
+<hr class="space">
+<div class="row flex-column-reverse flex-md-row align-items-center wow fadeInLeft" data-wow-duration="2s">
+    <div class="col-md-6 pl-md-4 text-center">
+        <img src="{{ url_for('static', filename='images/high_school_students_in_class.jpg') }}" class="img-fluid" alt=""/>
+    </div>
+    <div class="col-md-6">
+        <div class="list-content text-left">
+            <h2 class="sub-heading">{{ joinin_itemtxt7 }}</h2>
+            <p class="disp-inline">{{ joinin_itemtxt8 }}</p>
+            <a href="{{ url_for('why') }}" class="a:link">here</a>
+            <p class="disp-inline">{{ joinin_itemtxt9 }}</p>
+        </div>
+    </div>
+</div>
+<hr class="space">
+<div class="row flex-column-reverse flex-md-row align-items-center wow fadeInLeft" data-wow-duration="2s">
+    <div class="col-md-6">
+        <div class="list-content text-left">
+            <h2 class="sub-heading">{{ joinin_itemtxt10 }}</h2>
+            <p>{{ joinin_itemtxt11 }}</p>
+            <a href="{{ url_for('curriculum') }}" class="btn btn-site">Curriculum map</a>
+        </div>
+    </div>
+    <div class="col-md-6 pl-md-4 text-center">
+        <img src="{{ url_for('static', filename='images/parents_teaching_child.jpg') }}" class="img-fluid" alt=""/>
+    </div>
+</div>
+<hr class="space">
+<div class="row flex-column-reverse flex-md-row align-items-center wow fadeInLeft" data-wow-duration="2s">
+    <div class="col-md-6">
+        <div class="list-content text-left">
+            <h2 class="sub-heading">{{ joinin_itemtxt12 }}</h2>
+            <p>{{ joinin_itemtxt13 }}</p>
+<!--
+            <div class="col-md-12 text-right pt-2">    
+                {% set emailto = "publish@strongfam.org" %}
+                {% set subject = "Action message initiated by SFF website visitor" %} 
+                {% set message = "I would like to learn more about publishing my research on strongfam.org:" %}
+                {% set mailto = emailto + "?subject=" + (subject | urlencode + "&body=" + message | urlencode) %}
+                <a class="btn btn-site btn-email mr-3" href="mailto:{{ mailto }}">
+                    <i class="fas fa-envelope fa-md"></i> <span class="ml-2 fa-md">Email to learn more about publishing my research</span></a>
+            </div>
+-->
+        </div>
+    </div>
+    <div class="col-md-6 pl-md-4 text-center">
+        <img src="{{ url_for('static', filename='images/researcher_research_reporting.jpg') }}" class="img-fluid" alt=""/>
+    </div>
+</div>
+<hr class="space">
+<div class="row flex-column-reverse flex-md-row align-items-center wow fadeInLeft" data-wow-duration="2s">
+    <div class="col-2"></div>
+    <div class="col-md-8">
+        <div class="list-content text-left">
+            <h2 class="sub-heading">{{ joinin_itemtxt14 }}</h2>
+            <p>{{ joinin_itemtxt15 }}</p>            
+<!--
+            <div class="col-md-12 text-right pt-2">    
+                {% set emailto = "contact@strongfam.org" %}
+                {% set subject = "Action message 3 initiated by SFF website visitor" %} 
+                {% set message = "My suggestion for joining in is:" %}
+                {% set mailto = emailto + "?subject=" + (subject | urlencode + "&body=" + message | urlencode) %}
+                <a class="btn btn-site btn-email mr-3" href="mailto:{{ mailto }}">
+                    <i class="fas fa-envelope fa-md"></i> <span class="ml-2 fa-md">Email a join in suggestion</span></a>   
+            </div>
+-->
+        </div>
+    </div>
+    <div class="col-2"></div>
+</div>

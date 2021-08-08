@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{% endblock %} {% if projname is defined %}  |  {{ projname }} {% endif %}</title>
+
+  <script src="https://kit.fontawesome.com/a2702605a0.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://use.typekit.net/czf8frl.css">
+
+  <!-- Bootstrap -->
+  <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet">
+  <!-- Latest compiled and minified CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.smartmenus.bootstrap-4.css') }}">
+
+  {% block head %}{% endblock %} <!-- Add specific page Head elements from other templates-->  
+  
+  <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/responsive.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bnmgeneral.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bnmcustom.css') }}">
+  
+  {% block styles %}{% endblock %} <!-- Add aditional styles from other templates-->
+  {% block scripts %}{% endblock %} <!-- Add aditional scripts from other templates-->
+
+</head>
+
+<body>        
+  <!-- Page header for logo and navigation menu -->
+  {% include "layouts/header.html" %}
+
+  <!-- Block for the banner at top of the page under navigation bar -->
+  {% block banner %} {% endblock %} 
+
+  <!-- Block for page main content -->
+  <section class="mid-content-block">
+    <div class="container">
+    {% block content %} 
+    {% endblock %}      
+    </div>
+  </section>
+
+  <!-- Page footer with copyright information -->
+  {% include "layouts/footer.html" %}
+
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+  <!-- Include all compiled plugins (below), or include individual files as needed --> 
+  <script type="text/javascript" src="{{ url_for('static', filename='js/popper.min.js') }}"></script> 
+  <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.js') }}"></script> 
+  <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.smartmenus.js') }}"></script> 
+  <script type="text/javascript" src="{{ url_for('static', filename='js/wow.min.js') }}"></script>
+
+  <!-- SmartMenus jQuery plugin --> 
+  <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.smartmenus.bootstrap-4.js') }}"></script>
+  <script>
+    $(document).ready(function() {
+      var h = $('.header-main').height();
+      
+      $('body').css({'padding-top' : h + 'px'});
+    });
+    $(window).scroll(function() {
+      if ($(this).scrollTop() > 70){  
+        $('.header-main').addClass("stickyscroll");        
+      }
+      else{
+        $('.header-main').removeClass("stickyscroll");
+      }         
+    });
+
+    $(window).resize(function() {
+      rebuildBanner();
+    });   
+
+    $(document).ready(function() {
+      rebuildBanner();
+    });
+
+    function rebuildBanner(){
+        var w = $(window).width();
+        if(w <= 575) {
+          var src = $('.banner-inner img').attr('src');
+          $('.banner-inner img').hide();
+          $('.banner').css({'background-image':'url('+src+')'});
+        } else {
+          $('.banner-inner img').show();
+          $('.banner').css({'background-image':'none'});
+        }
+    }
+  </script>
+  <script>
+    new WOW().init();
+  </script> 
+
+  {% block bottom_scripts %}{% endblock %} <!-- Add scripts at bottom of the page for other pages-->
+
+  <div class="loading">
+        <div class="spinner-border text-info" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+  </div>
+</body>
+</html>

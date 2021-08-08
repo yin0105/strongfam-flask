@@ -1,0 +1,41 @@
+<!-- Main top section of the content. -->
+<div class="row align-items-center wow fadeInUp" data-wow-duration="2s">
+    <div class="col-2"></div>
+    <div class="col-md-8 text-center">
+        <div class="bg-transparent mt-4 mt-sm-3 mt-md-1 mt-lg-n4">
+            <h2 class="text-highlight">{{ focus_itemtxt1 }}</h2>
+        </div>
+    </div>
+    <div class="col-2"></div>
+</div>
+<div class="p12line-space"> </div>
+<div class="row align-items-center wow fadeInRight" data-wow-duration="2s">
+    <div class="col-4 col-md-4">
+        <div class="list-content text-left m-0">
+            <p>{{ focus_itemtxt2 }}</p>            
+        </div>
+    </div>
+    <div class="col-4 col-md-4 text-center m-0">
+        <img style="width:115%" src="{{ url_for('static', filename='images/family_together_fun.jpg') }}" class="img-fluid" alt=""/>
+    </div>
+    <div class="col-4 col-md-4 m-0">
+        <div class="list-content text-left">
+            <p>{{ focus_itemtxt3 }}</p>            
+        </div>
+    </div>
+</div>
+<div class="p2line-space"> </div>
+<div class="row flex-column-reverse flex-md-row align-items-center wow fadeInLeft" data-wow-duration="2s">
+    <div class="col-md-4 text-center">
+        <img style="width:107%" src="{{ url_for('static', filename='images/dad_daughter_laughing.jpg') }}" class="img-fluid" alt=""/>
+    </div>
+    <div class="col-md-4">
+        <div class="list-content text-left">
+            <p>{{ focus_itemtxt4 }}</p>
+            <a href="{{ url_for('details') }}" class="btn btn-site">Grant details</a>
+        </div>
+    </div>
+    <div class="col-md-4 text-center">
+        <img style="width:90%" src="{{ url_for('static', filename='images/mom_kids_laughing_together.jpg') }}" class="img-fluid" alt=""/>
+    </div>
+</div>

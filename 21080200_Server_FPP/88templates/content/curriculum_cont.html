@@ -1,0 +1,68 @@
+<!-- Main top section of the content. -->
+<div class="row align-items-center wow fadeInUp" data-wow-duration="2s">
+    <div class="col-2"></div>
+    <div class="col-md-8">
+        <div class="bg-transparent mt-3 mb-n1 mt-sm-1 mb-md-n2 mt-lg-n4">
+           <h2 class="text-highlight">{{ curriculum_itemtxt1 }}</h2>
+        </div>
+    </div>
+    <div class="col-2"></div>
+</div>
+<hr class="space">
+<div class="row flex-column-reverse flex-md-row align-items-center wow fadeInLeft" data-wow-duration="2s">
+    <div class="col-1"></div>
+    <div class="col-md-10">
+        <div class="list-content text-left ln-ht2">
+            <p class="p-3">{{ curriculum_itemtxt2 }}</p>            
+            <ul class="col-11 curriculum-cont a"> <!-- the 'a' refers to class ul.a in bnmcustom.css. It suppresses a leading bullet for all the major list items. See https://www.w3schools.com/css/css_list.asp. -->
+              <li class="curriculum-list"> {{ curriculum_itemtxt3 }}</li>
+                <ul class="b"> <!-- The 'b', like the 'a' above, sets the leading bullett to be a hollow circle per the same reference. Both are inherited. -->
+                  <li class="curriculum-list"> {{ curriculum_itemtxt4 }}</li>
+                  <li class="curriculum-list"> {{ curriculum_itemtxt5 }}</li>
+                  <li class="curriculum-list"> {{ curriculum_itemtxt6 }}</li>
+                </ul>
+              <li class="curriculum-list mt-4"> {{ curriculum_itemtxt7 }}</li>
+                <ul>
+                  <li class="curriculum-list"> {{ curriculum_itemtxt8 }}</li>
+                  <li class="curriculum-list"> {{ curriculum_itemtxt9 }}</li>
+                  <li class="curriculum-list"> {{ curriculum_itemtxt10 }}</li>
+                  <li class="curriculum-list"> {{ curriculum_itemtxt11 }}</li>
+                </ul>
+              <li class="curriculum-list mt-4"> {{ curriculum_itemtxt12 }}</li>
+                <ul>
+                  <li class="curriculum-list"> {{ curriculum_itemtxt13 }}</li>
+                  <li class="curriculum-list"> {{ curriculum_itemtxt14 }}</li>
+                  <li class="curriculum-list"> {{ curriculum_itemtxt15 }}</li>
+                </ul>
+              <li class="curriculum-list mt-4"> {{ curriculum_itemtxt16 }}</li>
+                <ul>
+                  <li class="curriculum-list"> {{ curriculum_itemtxt17 }}</li>
+                  <li class="curriculum-list"> {{ curriculum_itemtxt18 }}</li>
+                  <li class="curriculum-list"> {{ curriculum_itemtxt19 }}</li>
+                </ul>
+              <li class="curriculum-list mt-4"> {{ curriculum_itemtxt20 }}</li>
+                <ul>
+                  <li class="curriculum-list"> {{ curriculum_itemtxt21 }}</li>
+                  <li class="curriculum-list"> {{ curriculum_itemtxt22 }}</li>
+                </ul>
+              <li class="curriculum-list mt-4"> {{ curriculum_itemtxt23 }}</li>
+                <ul>
+                  <li class="curriculum-list"> {{ curriculum_itemtxt24 }}</li>
+                  <li class="curriculum-list"> {{ curriculum_itemtxt25 }}</li>
+                  <li class="curriculum-list"> {{ curriculum_itemtxt26 }}</li>
+                </ul>
+              <li class="curriculum-list mt-4"> {{ curriculum_itemtxt27 }}</li>
+                <ul>
+                  <li class="curriculum-list"> {{ curriculum_itemtxt28 }}</li>
+                  <li class="curriculum-list"> {{ curriculum_itemtxt29 }}</li>
+                  <li class="curriculum-list"> {{ curriculum_itemtxt30 }}</li>
+                  <a href="{{ url_for('whatlearned') }}" class="btn btn-site mt-4">More Results</a>
+                  <a class="btn  btn-site btn-download mt-4 mr-4" href="{{ url_for('static', filename='downloads/PTP_Curric_Final.pdf') }}" title="Download Curriculum">
+                    <i class="fas fa-file-excel fa-md"></i> <span class="fa-md">Download Curriculum</span></a> 
+                    <!-- For word (docx) documents replace 'fa-file-excel' with 'fa-file-word' and reference a valid word document in the line above it. -->
+                </ul>
+            </ul>
+        </div>
+    </div>
+    <div class="col-1"></div>
+</div>

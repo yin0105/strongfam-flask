@@ -1,0 +1,28 @@
+<!-- Main top section of the content. -->
+<div class="row align-items-center wow fadeInUp" data-wow-duration="2s">
+    <div class="col-md-12 text-center">
+        <div class="bg-transparent mt-2 mb-n3 mt-sm-n1 mt-lg-n4 mb-lg-2">
+            <h2 class="text-highlight">{{ statestandards_itemtxt1 }}</h2>
+        </div>
+    </div>
+</div>
+<hr class="space">
+<div class="row flex-column-reverse flex-md-row align-items-center wow fadeInLeft" data-wow-duration="2s">
+    <div class="col-md-12">
+        <div class="list-content text-left">
+            <p>{{ statestandards_itemtxt2 }}</p>            
+            <p>{{ statestandards_itemtxt3 }}</p>            
+            <p>{{ statestandards_itemtxt4 }}</p>            
+            <a href="{{ url_for('questionnaire') }}" class="btn btn-site mt-4">More Results</a>
+            <a class="btn  btn-site btn-download mt-4 mr-4" href="{{ url_for('static', filename='downloads/StateStandards.xlsx') }}" title="Download State Standards">
+                <i class="fas fa-file-excel fa-md"></i> <span class="fa-md">Download State Standards</span></a> 
+        </div>
+    </div>
+</div>
+<hr class="space">
+<div class="row align-items-center wow fadeInRight" data-wow-duration="2s">
+    <div class="col-md-12 text-center">
+        <h4 class="text-highlight-md">State Standards</h4>            
+        <img src="{{ url_for('static', filename='images/SFF_state_standards.jpg') }}" class="img-fluid" alt="" style="width:85%;"/>
+    </div>
+</div>

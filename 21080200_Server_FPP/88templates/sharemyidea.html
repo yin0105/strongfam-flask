@@ -1,0 +1,563 @@
+{% extends "layout.html" %}
+{% block title %}
+Share My Idea
+{% endblock %}
+
+
+{% block content %}
+    <div class="form-wrapper">
+        <h2 class="text-highlight text-center mt-3 mt-sm-1 mb-sm-4 mt-md-n1 mb-md-4 mt-lg-n4 mb-lg-4">SHARE MY IDEA</h2>
+
+        {% if (existingprojnum | int) > 0 %}            
+            <div class="text-center">
+                <h4 class="font-weight-bold f21 text-center mb-5">Cancel and Replace My Idea</h4>
+            </div>
+        {% endif %}
+
+
+
+    </div>
+    <div class="row flex-column-reverse <!-- flex-md-row --> align-items-center wow fadeInLeft" data-wow-duration="2s">
+
+        <div class="alert alert-danger" role="alert" style="display: none;">
+            <div class="alert_msg">One or more items is incorrect.  Please revise before entry.</div>
+        </div>
+        <div class="alert alert-success" role="alert" style="display: none;">      
+            <div class="alert_msg"></div>
+        </div>
+
+        {% if (existingprojnum | int) > 0 %}            
+            <div class="revision_info mb-4">
+                <strong>Ideas once entered cannot be modified. This process accepts a new Idea and cancels the old. Please be sure this is what you want before entering this new Idea.                </strong>
+            </div>            
+        {% endif %}
+        
+
+        <form method="POST" action="{{ url_for('sharemyidea') }}" id="shareMyIdeaForm" name="shareMyIdeaForm">
+            {{ form.csrf_token }}
+            <input type="hidden" name="existingprojnum" id="existingprojnum" value="{{ existingprojnum }}" />
+            <!-----------General fieldset------------->
+            <h3 class="mt-3">General</h3>
+            <hr class="space mt-1 mb-3" />
+            <div class="form-row">
+                <div class="form-group col-md-6 required">
+                  {{ form.projname.label }}
+                  {{ form.projname(class="form-control restrictedText", placeholder=form.projname.label.text, title=form.projname.label.text)  }} 
+                  <div class="invalid-feedback"></div>
+                </div>
+
+                <div class="form-group col-md-6 required">
+                    {{ form.reqamount.label }}
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroupPrepend">$</span>
+                    </div>
+                    {{ form.reqamount(class="form-control",type="number", placeholder="0", onkeydown="return onlyNumbers(event,this)", min="1", max="55000", step="any")  }}                     
+                    <div class="invalid-feedback"></div>
+                  </div>
+                  
+                </div>
+            </div>
+            <!-----------Organization fieldset------------->
+            <h3 class="mt-3">Organization</h3>
+            <hr class="space mt-1 mb-3" />
+            <div class="form-row">
+                <div class="form-group col-md-6 required">                    
+                  {{ form.orgname.label }}
+                  {{ form.orgname(class=" form-control restrictedText", placeholder=form.orgname.label.text, title=form.orgname.label.text)  }}
+                  <div class="invalid-feedback"></div>
+                </div>
+                <div class="form-group col-md-6 required">                    
+                  {{ form.orgwebaddr.label }}
+                  {{ form.orgwebaddr(class="form-control", placeholder=form.orgwebaddr.label.text, title=form.orgwebaddr.label.text)  }}
+                  <div class="invalid-feedback"></div>
+                </div>
+            </div>
+            <!-----------School fieldset------------->
+            <h3 class="mt-3">School</h3>
+            <hr class="space mt-1 mb-3" />
+            <div class="form-row">
+                <div class="form-group col-md-6">                
+                    {{ form.schoolname.label }}
+                    {{ form.schoolname(class=" form-control restrictedText", placeholder=form.schoolname.label.text, title=form.schoolname.label.text)  }}
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="form-group col-md-6">                    
+                    {{ form.schoolwebaddr.label }}
+                    {{ form.schoolwebaddr(class="form-control", placeholder=form.schoolwebaddr.label.text, title=form.schoolwebaddr.label.text)  }}
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>
+            <!-----------Principal Investigator fieldset------------->
+            <h3 class="mt-3">Principal Investigator Information</h3>
+            <hr class="space mt-1 mb-3" />
+            <div class="form-row">
+                <div class="form-group col-md-3 required">               
+                    {{ form.pititle.label }}
+                    {{ form.pititle(class=" form-control restrictedText", title="PI Title") }}
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="form-group col-md-6 required">
+                    {{ form.pifirstname.label }}
+                    {{ form.pifirstname(class=" form-control restrictedText", placeholder=form.pifirstname.label.text, title="PI First Name") }}
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="form-group col-md-3">
+                    {{ form.pimi.label }}
+                    {{ form.pimi(class=" form-control restrictedText", placeholder=form.pimi.label.text, title="PI Middle Initial", onkeypress="return onlyAlphabets(event,this);") }}
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group col-md-6 required">
+                    {{ form.pilastname.label }}
+                    {{ form.pilastname(class=" form-control restrictedText", placeholder=form.pilastname.label.text, title="PI Last Name") }}
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="form-group col-md-6">
+                    {{ form.pisuffix.label }}
+                    {{ form.pisuffix(class=" form-control restrictedText", placeholder=form.pisuffix.label.text, title="PI Suffix", onkeypress="return onlyAlphabets(event,this);") }}
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>
+            
+            <div class="form-group">                  
+                {{ form.picv.label }}
+                {{ form.picv(class="form-control", placeholder=form.picv.label.text, title="PI CV")  }}
+                <div class="invalid-feedback"></div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6 required">
+                    {{ form.piemail.label }}
+                    {{ form.piemail(class="form-control", type="email", placeholder=form.piemail.label.text, title="PI Email") }}
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="form-group col-md-6 required">
+                    {{ form.pitele.label }}
+                    {{ form.pitele(class="form-control numericonly", placeholder=form.pitele.label.text, title="PI Telephone", onkeydown="return onlyNumbers(event,this)") }}
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>            
+
+            <div class="form-group required">
+                {{ form.piaddr1.label }}
+                {{ form.piaddr1(class="form-control", placeholder="1234 Main St", title="PI Address 2") }}
+                <div class="invalid-feedback"></div>
+            </div>
+            <div class="form-group">
+                {{ form.piaddr2.label }}
+                {{ form.piaddr2(class="form-control", placeholder="Apartment, studio, or floor", title="PI Address 1") }}
+                <div class="invalid-feedback"></div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6 required">
+                    {{ form.picity.label }}
+                    {{ form.picity(class=" form-control restrictedText", placeholder=form.picity.label.text, title="PI City") }}
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="form-group col-md-4 required">
+                    <label for="pistate">State</label>
+                    <select id="pistate" name="pistate" class="form-control" required title="PI State">
+                    <option value="" selected>Choose...</option>
+                    {%for state in statelist%}   
+                    <option value="{{state[0]}}">{{state[1]}}</option> 
+                    {%endfor%} 
+                    </select>
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="form-group col-md-2 required">
+                    {{ form.pizip.label }}
+                    {{ form.pizip(class=" form-control numericonly", placeholder=form.pizip.label.text, title="PI Zip") }}
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>
+
+            <!-----------Other fieldset------------->
+            <h3 class="mt-3">Other Person</h3>
+            <hr class="space mt-1 mb-3" />
+            <div class="form-row">
+                <div class="form-group col-md-3">               
+                    {{ form.othertitle.label }}
+                    {{ form.othertitle(class=" form-control restrictedText", title="Other Title") }}
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="form-group col-md-6">
+                    {{ form.otherfirstname.label }}
+                    {{ form.otherfirstname(class=" form-control restrictedText", placeholder=form.otherfirstname.label.text, title="Other First Name") }}
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="form-group col-md-3">
+                    {{ form.othermi.label }}
+                    {{ form.othermi(class=" form-control restrictedText", placeholder=form.othermi.label.text, title="Other Middle Initial", onkeypress="return onlyAlphabets(event,this);") }}
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    {{ form.otherlastname.label }}
+                    {{ form.otherlastname(class=" form-control restrictedText", placeholder=form.otherlastname.label.text, title="Other Last Name") }}
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="form-group col-md-6">
+                    {{ form.othersuffix.label }}
+                    {{ form.othersuffix(class=" form-control restrictedText", placeholder=form.othersuffix.label.text, title="Other Suffix", onkeypress="return onlyAlphabets(event,this);") }}
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    {{ form.otheremail.label }}
+                    {{ form.otheremail(class="form-control",type="email", placeholder=form.otheremail.label.text, title="Other Email") }}
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="form-group col-md-6">
+                    {{ form.othertele.label }}
+                    {{ form.othertele(class="form-control numericonly", placeholder=form.othertele.label.text, title="Other Telephone", onkeydown="return onlyNumbers(event,this)") }}
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>            
+
+            <div class="form-group">
+                {{ form.otheraddr1.label }}
+                {{ form.otheraddr1(class="form-control", placeholder="1234 Main St", title="Other Address 1") }}
+                <div class="invalid-feedback"></div>
+            </div>
+            <div class="form-group">
+                {{ form.otheraddr2.label }}
+                {{ form.otheraddr2(class="form-control", placeholder="Apartment, studio, or floor", title="Other Address 2") }}
+                <div class="invalid-feedback"></div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    {{ form.othercity.label }}
+                    {{ form.othercity(class=" form-control restrictedText", placeholder=form.othercity.label.text, title="Other City") }}
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="otherstate">State</label>
+                    <select id="otherstate" name="otherstate" class="form-control" title="Other State">
+                    <option value="" selected>Choose...</option>
+                    {%for state in statelist%}   
+                    <option value="{{state[0]}}">{{state[1]}}</option> 
+                    {%endfor%} 
+                    </select>
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="form-group col-md-2">
+                    {{ form.otherzip.label }}
+                    {{ form.otherzip(class=" form-control numericonly", placeholder=form.otherzip.label.text, title="Other Zip") }}
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>
+
+            <!-----------Submission fieldset------------->
+            <h3 class="mt-3">Submission</h3>
+            <hr class="space mt-1 mb-3" />
+            <div class="form-group required">
+                {{ form.goal.label }}
+                {{ form.goal(class="form-control", title=form.goal.label.text) }}
+                <small id="goalHelpBlock" class="form-text text-muted">
+                    Maximum 360 characters.
+                </small>
+                <div class="invalid-feedback"></div>
+            </div>
+            <div class="form-group required">
+                {{ form.description.label }}
+                {{ form.description(class="form-control", title=form.description.label.text) }}
+                <small id="goalHelpBlock" class="form-text text-muted">
+                    Maximum 2400 characters.
+                </small>                
+                <div class="invalid-feedback"></div>
+            </div>
+            <div class="form-group">
+                {{ form.aboutpeople.label }}
+                {{ form.aboutpeople(class="form-control", title=form.aboutpeople.label.text) }}
+                <small id="goalHelpBlock" class="form-text text-muted">
+                    Maximum 1500 characters.
+                </small>
+                <div class="invalid-feedback"></div>
+            </div>
+            <div class="form-group required">
+                {{ form.relevance.label }}
+                {{ form.relevance(class="form-control", title=form.relevance.label.text) }}
+                <small id="goalHelpBlock" class="form-text text-muted">
+                    Maximum 2400 characters.
+                </small>
+                <div class="invalid-feedback"></div>
+            </div>
+            <div class="form-group required">
+                {{ form.dissemination.label }}
+                {{ form.dissemination(class="form-control", title=form.dissemination.label.text) }}
+                <small id="goalHelpBlock" class="form-text text-muted">
+                    Maximum 900 characters.
+                </small>
+                <div class="invalid-feedback"></div>
+            </div>
+            <div class="form-group">
+                {{ form.projother.label }}
+                {{ form.projother(class="form-control", title=form.projother.label.text) }}
+                <small id="goalHelpBlock" class="form-text text-muted">
+                    Maximum 900 characters.
+                </small>
+                <div class="invalid-feedback"></div>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-blue">Submit my idea</button>
+            </div>          
+
+        </form>        
+    </div>
+{% endblock %}
+
+{% block bottom_scripts %}
+    <script type="text/javascript">
+        var ctrlDown = false,
+            ctrlKey = 17,
+            cmdKey = 91,
+            vKey = 86;
+
+        var hintText = 'This field accepts only characters, numbers, ampersands and hyphens.';
+        
+        $(document).ready(function() {
+            $('#shareMyIdeaForm').submit(function (e) {
+                var url = "{{ url_for('savemyidea') }}"; // send the form data here.
+                $('#shareMyIdeaForm .is-invalid').removeClass('is-invalid');
+                $('.alert_msg').html('');
+                $('.alert').hide()
+
+                $('.loading').show();
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: $('#shareMyIdeaForm').serialize(), // serializes the form's elements.
+                    success: function (resp) {
+                        console.log(resp.status)  // display the returned data in the console.
+                        if(resp.status == 'success'){
+                            //$('.alert-success').find('.alert_msg').html(resp.message);
+                            //$('.alert-success').show();
+                            document.getElementById("shareMyIdeaForm").reset();
+                            $('#shareMyIdeaForm .is-invalid').removeClass('is-invalid');
+                            $('#shareMyIdeaForm .is-valid').removeClass('is-valid');
+                            window.location.href = resp.url;
+
+                        } else {                            
+                            var errors = resp.data;
+                            var error_list = '<ul>';
+                            $.each(errors, function(key, error){
+                                if(key !== 'undefined' && key !== 'csrf_token') {
+                                    $('#'+key).addClass('is-invalid');                                
+                                    $('#'+key).parent().find('.invalid-feedback').html(error[0]);                                
+                                    error_list += '<li><span data-target="#'+key+'" class="error_list">' + $('#'+key).attr('title') + '</span>: ' + error[0]+'</li>';
+                                } else {
+                                    error_list += '<li>'+error[0]+'</li>';
+                                }                                
+                            });                          
+                            error_list += "</ul>";
+                            //$('.alert-danger').find('.alert_msg').html(resp.message);                            
+                            $('.alert-danger').find('.alert_msg').html(error_list);
+                            $('.alert-danger').show();
+                            //$('html,body').animate({scrollTop: $('#shareMyIdeaForm .is-invalid').first().offset().top - 100},'slow');
+                        }
+
+                        $('html,body').animate({scrollTop: $('.alert').first().offset().top - 100},'slow');
+                        $('.loading').hide();
+                    }
+                });
+                e.preventDefault(); // block the traditional submission of the form.
+            });
+
+            $(document).on('click','.error_list',function(){
+                var target = $(this).data('target');
+                $('html,body').animate({scrollTop: $(target).offset().top - 100},'slow');
+            });
+
+            // Inject our CSRF token into our AJAX request.
+            $.ajaxSetup({
+                beforeSend: function(xhr, settings) {
+                    if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", "{{ form.csrf_token._value() }}")
+                    }
+                }
+            })
+
+            
+
+            $(document).keydown(function(e) {
+                if (e.keyCode == ctrlKey || e.keyCode == cmdKey) ctrlDown = true;
+            }).keyup(function(e) {
+                if (e.keyCode == ctrlKey || e.keyCode == cmdKey) ctrlDown = false;
+            });
+
+            
+            $("textarea").on("paste", function(e){
+                // access the clipboard using the api
+                var pastedData = e.originalEvent.clipboardData.getData('text/plain');
+                
+                $(this).addClass('is-invalid');
+                var max = $(this).prop("maxlength");
+                if(pastedData.length > max){
+                    var msg = "<small>You have entered "+pastedData.length+" characters. Your entry has been truncated to "+max+ " characters automatically.</small>";
+                    $(this).parent().append('<div class="invalid-length text-danger">'+msg+'</div>');
+                }
+            });
+            $("textarea").keypress(function(e){
+                if($(this).length <= $(this).prop("maxlength")) {
+                    $(this).parent().find('.invalid-length').remove();
+                }
+            });
+
+            var hintContent = '<small class="form-text text-muted">'+hintText+'</small>';
+            $('.restrictedText').after(hintContent);
+
+            // The function you currently have
+            $('.restrictedText').keypress(function (e) {
+                var allowedChars = new RegExp("^[a-zA-Z0-9 &\-]+$");
+                var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+                if (allowedChars.test(str)) {
+                    return true;
+                }
+                e.preventDefault();
+                return false;
+            }).keyup(function() {
+                // the addition, which whill check the value after a keyup (triggered by Ctrl+V)
+                // We take the same regex as for allowedChars, but we add ^ after the first bracket : it means "all character BUT these"
+                var forbiddenChars = new RegExp("[^a-zA-Z0-9 &\-]", 'g');
+                if (forbiddenChars.test($(this).val())) {
+                    //$(this).val($(this).val().replace(forbiddenChars, ''));
+                }
+            });
+
+            
+
+        });
+
+        function onlyAlphabets(e, t) {
+            try {
+                if (window.event) {
+                    var charCode = window.event.keyCode;
+                }
+                else if (e) {
+                    var charCode = e.which;
+                }
+                else { return true; }
+                if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123) || charCode==8)
+                    return true;
+                else
+                    return false;
+            }
+            catch (err) {
+                alert(err.Description);
+            }
+        }
+
+        function onlyNumbers(e, ele){
+            var keynum;
+            var keychar;
+            
+            var vKey = 86;
+            var cKey = 67;
+
+            if(window.event){  //IE
+                keynum = e.keyCode;
+            }
+            if(e.which){ //Netscape/Firefox/Opera
+                keynum = e.which;
+            }
+            
+            console.log(e.keyCode);
+            if (ctrlDown && (e.keyCode == vKey || e.keyCode == cKey)) {
+                if($.isNumeric(ele.value)) {
+                    return true;    
+                } else {
+                    ele.classList.add('is-invalid');
+                    $('#'+ele.id).parent().find('.invalid-feedback').html("Only numeric values are allowed!");                
+                    return false;
+                }
+            } 
+
+            if(keynum == 8 || keynum == 9 || keynum == 46 || (keynum >= 35 && keynum <= 40) ||
+            (keynum >= 96 && keynum <= 105) || (keynum >= 48 && keynum <= 57) ) {                
+                
+                if (ele.value.indexOf(".") !== -1 && ( (keynum >= 96 && keynum <= 105) || (keynum >= 48 && keynum <= 57) ))
+                {
+                    var number = ele.value.split('.');
+                    console.log(number[1].length);
+                    if (number.length == 2 && number[1].length > 1)
+                        return false;
+                }
+
+                return true;
+            }
+
+            
+            
+            if(keynum == 110 || keynum == 190){
+                var checkdot=document.getElementById(ele.id).value;
+                var i=0;
+                for(i=0;i<checkdot.length;i++){
+                    if(checkdot[i]=='.')return false;
+                }
+                
+                if(checkdot.length==0)document.getElementById(ele.id).value='0';
+                return true;
+            }
+
+            
+            keychar = String.fromCharCode(keynum);
+
+            return !isNaN(keychar);
+        }
+
+        
+
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // fetch all the forms we want to apply custom style
+                var inputs = document.getElementsByClassName('form-control')
+
+                // loop over each input and watch blur event
+                var validation = Array.prototype.filter.call(inputs, function(input) {
+
+                input.addEventListener('blur', function(event) {
+                    // reset
+                    input.classList.remove('is-invalid')
+                    input.classList.remove('is-valid')
+
+                    var allowedChars = new RegExp("^[a-zA-Z0-9 &\-]+$");
+                    if (input.value.length > 0 && input.classList.contains("restrictedText") && !allowedChars.test(input.value)) {                        
+                        input.classList.add('is-invalid');    
+                        var customMsg = "Only characters, numbers, ampersands and hyphens are allowed.";
+                        $('#'+input.id).parent().find('.invalid-feedback').html(customMsg);
+
+                    } else if (input.value.length > 0 && input.classList.contains("numericonly") && !$.isNumeric(input.value)) {
+                        input.classList.add('is-invalid');    
+                        var customMsg = "Only numeric values are allowed.";
+                        $('#'+input.id).parent().find('.invalid-feedback').html(customMsg);
+
+                    } else if (input.checkValidity() === false) {
+                        input.classList.add('is-invalid');
+                        var customMsg = input.validationMessage;
+
+                        if (input.value.length > 0 && input.tagName == "INPUT" && input.hasAttribute("minlength")) {
+                            if (input.value.length < input.getAttribute("minlength")) {
+                                var used = input.value.length;
+                                var customMsg = "Please use " + input.getAttribute("minlength") + " numeric digits (you are currently using " + used + ").";
+                            };
+                        }
+
+                        $('#'+input.id).parent().find('.invalid-feedback').html(customMsg);
+                    }                    
+                    else {
+                        input.classList.add('is-valid')
+                    }
+                }, false);
+                });
+            }, false);
+        })()
+    </script>
+{% endblock %}

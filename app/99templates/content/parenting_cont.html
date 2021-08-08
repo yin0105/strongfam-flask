@@ -1,0 +1,45 @@
+<!-- Main top section of the content. -->
+<div class="row align-items-center wow fadeInUp" data-wow-duration="2s">
+    <div class="col-md-12 text-center">
+        <div class="bg-transparent mt-3 mt-sm-1 mt-lg-n4">
+            <h2 class="text-highlight">Why Are Parenting Practices Important?</h2>
+        </div>
+    </div>
+</div>
+<hr class="space mtb-5">
+<div class="row flex-column-reverse flex-md-row align-items-center wow fadeInLeft" data-wow-duration="2s">
+    <div class="col-md-6 text-center">
+        <div class="list-content text-left">
+            <h2 class="sub-heading">{{ parenting_itemtxt1 }}</h2>
+            <p>{{ parenting_itemtxt2 }}</p>            
+        </div>
+    </div>
+    <div class="col-md-6 text-center">
+        <img src="{{ url_for('static', filename='images/mom_dad_baby.jpg') }}" class="img-fluid" alt=""/>
+    </div>
+</div>
+<hr class="space">
+<div class="row align-items-center wow fadeInRight" data-wow-duration="2s">
+    <div class="col-md-6 text-center">
+        <img src="{{ url_for('static', filename='images/starts_at_birth_chart.jpg') }}" class="img-fluid" alt=""/>
+    </div>
+    <div class="col-md-6">
+        <div class="list-content">
+            <h2 class="sub-heading">{{ parenting_itemtxt3 }}</h2>
+            <p>{{ parenting_itemtxt4 }}</p>
+        </div>
+    </div>
+</div>
+<hr class="space">
+<div class="row row flex-column-reverse flex-md-row align-items-center wow fadeInLeft" data-wow-duration="2s">
+    <div class="col-md-6">
+        <div class="list-content text-left">
+            <h2 class="sub-heading">{{ parenting_itemtxt5 }}</h2>
+            <p>{{ parenting_itemtxt6 }}</p>
+            <a href="{{ url_for('thechallenge') }}" class="btn btn-site">The Challenge</a>
+        </div>
+    </div>
+    <div class="col-md-6 text-center">
+        <img src="{{ url_for('static', filename='images/mom_dad_daughter_reading.jpg') }}" class="img-fluid" alt=""/>
+    </div>
+</div>

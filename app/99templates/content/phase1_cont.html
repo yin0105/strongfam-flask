@@ -1,0 +1,39 @@
+<!-- Main top section of the content. -->
+<div class="row align-items-center wow fadeInUp" data-wow-duration="2s">
+    <div class="col-2"></div>
+    <div class="col-md-8 text-center">
+        <div class="bg-transparent mt-3 mt-sm-2 mt-lg-n4">
+            <h2 class="text-highlight">{{ phase1_itemtxt1 }}</h2>
+        </div>
+    </div>
+    <div class="col-2"></div>
+</div>
+<hr class="space">
+<div class="row flex-column-reverse flex-md-row align-items-center wow fadeInLeft" data-wow-duration="2s">
+    <div class="col-1"></div>
+    <div class="col-md-10">
+        <div class="list-content text-left">
+            <p>{{ phase1_itemtxt2 }}</p>
+            <p class="p4line-space"> </p>
+            <p>{{ phase1_itemtxt3 }}</p>
+            <p class="p4line-space"> </p>
+            <p>{{ phase1_itemtxt4 }}</p>
+        </div>
+    </div>
+    <div class="col-1"></div>
+</div>
+<p class="p6line-space"> </p>
+<div class="row flex-column-reverse flex-md-row align-items-center wow fadeInLeft" data-wow-duration="2s">
+    <div class="col-md-6">
+        <div class="list-content text-left">
+            <p>{{ phase1_itemtxt5 }}</p>
+            <a href="{{ url_for('statestandards') }}" class="btn btn-site">More Results</a>
+            <a class="btn  btn-site btn-download mr-4" href="{{ url_for('static', filename='downloads/TPP_FinalReport_Sept14_05.docx') }}" title="Download the report">
+                <i class="fas fa-file-excel fa-md"></i> <span class="fa-md">Download the report</span></a> 
+                <!-- For word (docx) documents replace 'fa-file-excel' with 'fa-file-word' and reference a valid word document in the line above it. -->
+        </div>
+    </div>
+    <div class="col-md-6 text-center">
+        <img src="{{ url_for('static', filename='images/woman_girl_stars.jpg') }}" class="img-fluid" alt=""/>
+    </div>
+</div>s

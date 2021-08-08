@@ -1,0 +1,41 @@
+<!-- Main top section of the content. -->
+<div class="row align-items-center wow fadeInUp" data-wow-duration="2s">
+    <div class="col-md-12 text-center">
+        <div class="bg-transparent mt-4 mb-n1 mt-md-2 mt-lg-n4">
+            <h2 class="text-highlight">{{ questionnaire_itemtxt1 }}</h2>
+        </div>
+    </div>
+</div>
+<hr class="space">
+<div class="row flex-column-reverse flex-md-row align-items-center wow fadeInLeft" data-wow-duration="2s">
+    <div class="col-md-12">
+        <div class="list-content text-left">
+            <p>{{ questionnaire_itemtxt2 }}</p>            
+        </div>
+    </div>
+</div>
+<hr class="space">
+<div class="row align-items-center wow fadeInRight" data-wow-duration="2s">
+    <div class="col-md-12 text-center">
+          <img class="mt-0" style="width:90%;" src="../static/images/SFF_APKAS_questionnaire_a.jpg">
+    </div>
+</div>
+<hr class="space">
+<div class="row flex-column-reverse flex-md-row align-items-center wow fadeInLeft" data-wow-duration="2s">
+    <div class="col-md-12">
+        <div class="list-content text-left">
+            <p>{{ questionnaire_itemtxt3 }}</p>
+            <a href="{{ url_for('curriculum') }}" class="btn btn-site mt-2">More Results</a>
+
+            <div class="col-md-12 text-right pt-2">    
+                {% set emailto = "sendinfo@strongfam.org" %}
+                {% set subject = "Action message initiated by SFF website visitor" %} 
+                {% set message = "Please send me a copy of the APKAS questionnaire." %}
+                {% set mailto = emailto + "?subject=" + (subject | urlencode + "&body=" + message | urlencode) %}
+                <a class="btn btn-site btn-email mr-3" href="mailto:{{ mailto }}">
+                    <i class="fas fa-envelope fa-md"></i> <span class="ml-2 fa-md">Email for the APKAS questionnaire</span></a>   
+            </div>
+
+        </div>
+    </div>
+</div>
