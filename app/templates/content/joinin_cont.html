@@ -1,4 +1,22 @@
 <!-- Main top section of the content. -->
+<!-- <div class="noty_bar noty_type__success noty_theme__unify--v1 noty_close_with_click noty_close_with_button g-mb-25 mx-auto pr-0 py-2" style="
+    position: fixed;
+    display: flex;
+    width: 300px;
+    top: 100px;
+    right: 50px;
+">
+    <div class="noty_body ml-2 mr-1">
+       <div class="g-mr-20">
+          <div class="noty_body__icon">
+             <i class="hs-admin-check"></i>
+          </div>
+       </div>
+       <div class="my-3 mr-3">Thank you for your message.</div>
+       <div class="noty_close_button mt-0 mb-4">×</div>
+    </div>
+    
+ </div> -->
 <div class="row align-items-center wow fadeInUp" data-wow-duration="2s">
     <div class="col-md-12">
         <div class="bg-transparent mt-3 mt-sm-1 mt-lg-n4">
@@ -125,70 +143,76 @@
 <div id="myModal" class="modal fade" role="dialog">  
     <div class="modal-dialog m-auto">  
  <!-- Modal content-->  
-            <div class="modal-content" style="background-color: #F7F2C5;">  
+        <div class="modal-content" style="background-color: #F7F2C5;">  
 
-                <form method="POST" action="{{ url_for('sharemyidea') }}" id="subjectForm" name="subjectForm">
-                    {{ form.csrf_token }}
+            <form method="POST" action="{{ url_for('sharemyidea') }}" id="subjectForm" name="subjectForm">
+                {{ form.csrf_token }}
 
-                    <div class="modal-header">
-                        <h1 class="modal-title ml-4 mr-1 text-highlight" style="color:Navy;">Send in a message or question</h1>
-                        <button type="button" class="close" data-dismiss="modal">×</button>  
-                    </div>  
+                <div class="modal-header">
+                    <h1 class="modal-title ml-4 mr-1 text-highlight" style="color:Navy;">Send in a message or question</h1>
+                    <button type="button" class="close" data-dismiss="modal">×</button>  
+                </div>  
 
-                    <div class="modal-body px-4">
+                <div class="modal-body px-4">
 
-                        <div class="form-row">
-                            <div class="form-group col-md-12 required">
-                                <label for="subject">Select a subject</label>
-                                <select id="subject" name="subject" class="form-control" required title="Subject">
-                                    <option value="" selected>Choose...</option>
-                                    {%for subject in subjects_list%}   
-                                        <option value="{{subject[0]}}">{{subject[1]}}</option> 
-                                    {%endfor%} 
-                                </select>
-                                <div class="invalid-feedback"></div>
-                            </div>  
+                    <div class="form-row">
+                        <div class="form-group col-md-12 required">
+                            <label for="subject">Select a subject</label>
+                            <select id="subject" name="subject" class="form-control" required title="Subject">
+                                <option value="" selected>Choose...</option>
+                                {%for subject in subjects_list%}   
+                                    <option value="{{subject[0]}}">{{subject[1]}}</option> 
+                                {%endfor%} 
+                            </select>
+                            <div class="invalid-feedback"></div>
+                        </div>  
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-12 required">
+                            {{ form.visname.label }}
+                            {{ form.visname(class=" form-control restrictedText", placeholder=form.visname.label.text, title="VIS Name") }}
+                            <div class="invalid-feedback"></div>
                         </div>
+                    </div>
 
-                        <div class="form-row">
-                            <div class="form-group col-md-12 required">
-                                {{ form.visname.label }}
-                                {{ form.visname(class=" form-control restrictedText", placeholder=form.visname.label.text, title="VIS Name") }}
-                                <div class="invalid-feedback"></div>
-                            </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12 required">
+                            {{ form.visemail.label }}
+                            {{ form.visemail(class="form-control", type="email", placeholder=form.visemail.label.text, title="VIS Email") }}
+                            <div class="invalid-feedback"></div>
                         </div>
+                    </div>
 
-                        <div class="form-row">
-                            <div class="form-group col-md-12 required">
-                                {{ form.visemail.label }}
-                                {{ form.visemail(class="form-control", type="email", placeholder=form.visemail.label.text, title="VIS Email") }}
-                                <div class="invalid-feedback"></div>
-                            </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12 required">
+                            {{ form.message.label }}
+                            {{ form.message(class="form-control", title=form.message.label.text) }}
+                            <small id="messageHelpBlock" class="form-text text-muted">
+                                The maximum length is 480 characters or about 80 words.
+                            </small>
+                            <div class="invalid-feedback"></div>
                         </div>
-
-                        <div class="form-row">
-                            <div class="form-group col-md-12 required">
-                                {{ form.message.label }}
-                                {{ form.message(class="form-control", title=form.message.label.text) }}
-                                <small id="messageHelpBlock" class="form-text text-muted">
-                                    The maximum length is 480 characters or about 80 words.
-                                </small>
-                                <div class="invalid-feedback"></div>
-                            </div>
-                        </div>
+                    </div>
 
 
-                        <!-- <button type="button" name="login_button" id="login_button" class="btn btn-warning">Login</button>   -->
-                        <div class="form-row">
-                            <!-- <a role="button" class="btn btn-msg m-auto"></span>Submit</a> -->
+                    <!-- <button type="button" name="login_button" id="login_button" class="btn btn-warning">Login</button>   -->
+                    <div class="form-row d-block">
+                        <!-- <a role="button" class="btn btn-msg m-auto"></span>Submit</a> -->
+                        <div class="d-flex">
                             {{ form.submit(class="btn btn-msg m-auto", title=form.submit.label.text) }}
                         </div>
-                        
-                    </div> 
-                </form> 
-            </div>  
+                        <small id="messageThanks" class="form-text text-muted text-center">
+                            Thank you for your message.
+                        </small>
+                    </div>
+                    
+                </div> 
+            </form> 
+        </div>  
     </div>  
 </div>
+
 
 <script type="text/javascript">
     var ctrlDown = false,
@@ -199,6 +223,7 @@
     var hintText = 'This field accepts only characters, numbers, ampersands and hyphens.';
     
     $(document).ready(function() {
+        $('#messageThanks').hide();
         $('.modal-header').on('mousedown', function(downEvt) {
             console.log("modal-header: mousedown");
             var $draggable = $(this);
@@ -222,11 +247,9 @@
 
         $('#subjectForm').submit(function (e) {
             var url = "{{ url_for('send_message') }}"; // send the form data here.
-            $('#subjectForm .is-invalid').removeClass('is-invalid');
+            $('#subjectForm.is-invalid').removeClass('is-invalid');
             $('.alert_msg').html('');
             $('.alert').hide();
-
-            $('.loading').show();
 
             console.log("send_message = ", url);
             $.ajax({
@@ -234,17 +257,8 @@
                 url: url,
                 data: $('#subjectForm').serialize(), // serializes the form's elements.
                 success: function (resp) {
-                    console.log(resp.status)  // display the returned data in the console.
                     if(resp.status == 'success'){
-                        console.log("data = ", resp);
-                        console.log("success");
-                        //$('.alert-success').find('.alert_msg').html(resp.message);
-                        //$('.alert-success').show();
-                        // document.getElementById("subjectForm").reset();
-                        // $('#subjectForm .is-invalid').removeClass('is-invalid');
-                        // $('#subjectForm .is-valid').removeClass('is-valid');
-                        // window.location.href = resp.url;
-
+                        $('#messageThanks').show();
                     } else {                            
                         var errors = resp.errors;
                         console.log("error = ", resp);
@@ -262,11 +276,12 @@
                         //$('.alert-danger').find('.alert_msg').html(resp.message);                            
                         $('.alert-danger').find('.alert_msg').html(error_list);
                         $('.alert-danger').show();
-                        $('html,body').animate({scrollTop: $('#subjectForm .is-invalid').first().offset().top - 100},'slow');
+                        console.log("1 : ", $('#subjectForm.is-invalid'));
+                        console.log("1 : ", $('#subjectForm.is-invalid').first());
+                        $('html,body').animate({scrollTop: $('#subjectForm.is-invalid').first().offset().top - 100},'slow');
                     }
 
-                    // $('html,body').animate({scrollTop: $('.alert').first().offset().top - 100},'slow');
-                    // $('.loading').hide();
+                    $('html,body').animate({scrollTop: $('.alert').first().offset().top - 100},'slow');
                 },
                 
                 error: function(resp) {
@@ -288,9 +303,7 @@
                     xhr.setRequestHeader("X-CSRFToken", "{{ form.csrf_token._value() }}")
                 }
             }
-        })
-
-        
+        })        
 
         $(document).keydown(function(e) {
             if (e.keyCode == ctrlKey || e.keyCode == cmdKey) ctrlDown = true;
