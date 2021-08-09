@@ -1,0 +1,184 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+@media (min-width: 1250px){
+    /*.container, .container-sm, .container-md, .container-lg, .container-xl {
+        max-width:1330px; 
+    } */
+    .banner-inner{max-height:520px; overflow: hidden;}
+    .bottom-left0x{bottom: 70px}
+}
+
+@media only screen and (max-width:1199px) {
+    .header-main .navbar {font-size: 16px;}
+    .header-main .navbar-light .navbar-nav .nav-item { padding: 0 5px;}
+    .list-content {    padding: 30px 20px;}
+    .banner {padding-top: 0em;}
+    .top-right1x {
+        position: absolute;
+        top: 15px;
+        right: 40px;
+        font-size: 45px;
+    }
+    .bottom-left0x {
+        bottom: 50px;
+        left: 30px;
+        font-size: 45px;
+        color: white;
+        position: absolute;
+        white-space: pre-wrap;
+        background-color: transparent;
+        font-weight: 600;
+    }
+}
+
+@media only screen and (min-width:991px) {  
+    .dropdown-menu {
+    margin-left: 0 !important;
+    }
+    .dropdown-menu .dropdown ul{
+        margin-left: 100% !important;
+    }
+   
+}
+
+@media only screen and (max-width:992px) {  
+    .navbar-collapse {padding-bottom: 0px;}
+    .mid-content-block {
+        padding: 50px 0;
+    }
+    
+    .banner {
+    padding-top: 0em;
+    padding-bottom: 0em;
+    }
+    .tilt-style {margin: 40px 0;font-size: 50px;  font-weight: 700; -ms-transform: rotate(0deg);
+        transform: rotate(0deg);}
+
+    .top-right1x {
+        position: absolute;
+        top: 10px;
+        right: 30px;
+        font-size: 40px;
+    }
+    .bottom-left0x {
+        bottom: 20px;
+        left: 20px;
+        font-size: 35px;
+        color: white;
+        position: absolute;
+        white-space: pre-wrap;
+        background-color: transparent;
+        font-weight: 600;
+    }
+
+
+}
+
+@media only screen and (max-width:767px) {    
+    .footer h3 {margin-bottom: 10px;}
+    .banner-inner {    position: relative;min-height: 300px;}
+    .banner-text {
+        position: relative;
+        bottom: 0;
+        padding: 15px;
+    }
+    .banner-text h1 {
+        text-shadow: 0px 0px 5px #000, 0px 0px 15px #000;
+        font-weight: 600;
+        font-variant: small-caps;
+        font-size: 24px;
+    }
+    .banner-text h2 {font-size: 20px;}
+    .mid-content-block {
+        padding: 40px 0;
+    }
+    .list-content {
+        padding: 15px;
+    }
+
+    .space {
+        margin-top: 2.3rem;
+        margin-bottom: 2rem;        
+        border-top: 1px solid rgba(0, 0, 0, 0.4);
+    }
+    .sub-heading {
+        font-size: 24px;
+    }
+    .btn-site {
+        background-color: #25bfbb;
+        border-color: #25bfbb;
+        border-radius: 50px;
+        color: #fff;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 600;
+        /*padding: 6px 20px;
+        font-size: 18px;*/
+    }
+    .footer {
+        background-color: #0077c8;
+        padding: 30px 0;
+        color: #fff;
+    }
+
+    .banner {
+        padding-top: 0em;
+        padding-bottom: 0em;
+    }
+    .tilt-style { font-size: 38px; }
+
+    .top-right1x {
+        position: absolute;
+        top: 7px;
+        right: 23px;
+        font-size: 33px;
+    }
+    .bottom-left0x {
+        bottom: 10px;
+        left: 15px;
+        font-size: 27px;
+        color: white;
+        position: absolute;
+        white-space: pre-wrap;
+        background-color: transparent;
+        font-weight: 600;
+    }
+
+}
+
+@media only screen and (max-width:575px) {  
+    .footer-bottom-inner {flex-direction: column;}
+
+    .navbar-light .navbar-brand {
+    	max-width: 150px;    	
+    }
+    .header-main .navbar-brand img {height: auto;}
+    .mid-content-block {
+        padding: 20px 0;
+    }    
+    .banner-inner {    position: relative;}
+    .banner-inner{height:280px; overflow: hidden; min-height: 280px;}    
+    .top-right1x {
+        position: absolute;
+        top: 5px;
+        right: 20px;
+        font-size: 30px;
+    }
+    .bottom-left0x {
+        bottom: 10px;
+        left: 8px;
+        font-size: 25px;
+        color: white;
+        position: absolute;
+        white-space: pre-wrap;
+        background-color: transparent;
+        font-weight: 600;
+    }
+}
+@media only screen and (max-width:479px) { 
+    h2.heading {font-size: 30px;}
+}
+
+
+

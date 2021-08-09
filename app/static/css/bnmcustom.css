@@ -1,0 +1,269 @@
+/* No CSS has been added by me to any other CSS file except this one. */
+
+.col-24-1 {width: 4.17%;}
+
+/* .no-m {margin: 0px !important;} */
+.top-neg-m {margin: 0px !important;} /* for home page only */
+
+p.disp-inline {display: inline;}
+/* 
+Restoring the next 2 lines messes up the Focus page
+Tested this 2/7/21 while working on the grants secion & do not think either line is used anywhere in our website,
+can't be 100% absolutely certain.  Started by deleting one line.  If no problems, then delete the other & watch
+to make certain still no problems.
+*/
+.mlr-30 {margin-left:-30px;margin-right:-30px}
+/*  .mlr100 {margin-left:100px;margin-right:100px} */
+/*
+.tilt-style {color: #0077c8; font-weight: 700; font-size:55px; text-align: center;  -ms-transform: rotate(-17deg);
+    transform: rotate(-17deg);}
+*/
+.tilt-style {color: #0077c8; font-weight: 900; font-size:55px; transform: none;position: relative;}
+
+.grants-style1 {color: #0077c8; font-weight: 700; font-size:94px; text-align: center;}
+.grants-style1 {color: #0077c8; font-weight: 900; font-size:55px; transform: none;position: relative;}
+
+@media (min-width: 1200px) {
+  .hop-adj {
+    margin-left: 5%; !important;
+    margin-right: 0px !important;
+    }
+  .ln-one {
+    left: -35% !important; /* was right: 422px;  */
+    top: -66px !important;
+    }
+  .ln-two {
+    left: -32% !important;
+    top: -66px !important;
+    }
+  .ln-three {
+    left: 1% !important;
+    top: -63px !important;
+    }
+  }
+@media (min-width: 991px) {
+/* Thankyou page */
+  #font-thankyou-bold {
+    font-size: 17px;
+    font-weight: 500;
+    }
+  #line-height-thankyou {
+    line-height: 150%;
+    }
+  #thankyou-bkgnd {
+    background-color: rgba(204,249,204,1);
+    }
+/* End thankyou page */
+/* Contactus page */
+/* End contactus */
+
+  .ln-one {
+    right: 87px !important;
+    top: -15px !important;
+    text-align: center !important; 
+    font-size: 64px !important;
+    }
+  .ln-two {
+    right: 83px !important;
+    top: -12px !important;
+    text-align: center !important; 
+    font-size: 64px !important;
+    }
+  .ln-three {
+    right: -45px !important;
+    top: -15px !important;
+    text-align: center !important; 
+    font-size: 64px !important;
+    }
+  }
+@media (max-width: 992px) {
+/* Thankyou page */
+  #font-thankyou-bold {
+    font-size: 17px;
+    font-weight: 500;
+    }
+  #line-height-thankyou {
+    line-height: 150%;
+    }
+  #thankyou-bkgnd {
+    background-color: rgba(204,249,204,1);
+    }
+/* End thankyou page */
+/* Contactus page */
+/* End contactus */
+
+  .top-neg-m {
+    margin: -50px !important;
+    }  /* for home page only */
+  .hop-adj {
+    margin-left: -10spx !important;
+    margin-right: -25px !important;
+    min-width: 55%;
+    }
+  .ln-one {
+    right: 48px !important;
+    top: 14px !important;
+    font-size: 50px !important;
+    text-align: center !important; 
+    }
+  .ln-two {
+    right: 44px !important;
+    top: -13px !important;
+    font-size: 50px !important;
+    text-align: center !important; 
+    }
+  .ln-three {
+    right: -55px !important;
+    top: -40px !important;
+    font-size: 50px !important;
+    text-align: center !important; 
+    }
+  }
+@media (max-width: 767px) {
+/* Thankyou page */
+  #font-thankyou-bold {
+    font-size: 17px;
+    font-weight: 500;
+    }
+  #line-height-thankyou {
+    line-height: 150%;
+    }
+  #thankyou-bkgnd {
+    background-color: rgba(204,249,204,1);
+    }
+/* End thankyou page */
+/* Contactus page */
+/* End contactus */
+/* Terms page */
+  #font-terms-big {
+    font-size: 22px;
+    }
+  #line-height-terms {
+    line-height: 175%;
+    }
+/* End terms page */
+
+  .top-neg-m {
+    margin: 0px !important;
+    }  /* for home page only */
+  .hop-adj {
+    min-width: 90%;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    }
+  .ln-one {
+    right: 0px !important;
+    top: 0px !important;
+    font-size: 48px !important;
+    text-align: center !important; 
+   }
+  .ln-two {
+    right: 0px !important;
+    top: 0px !important;
+    font-size: 48px !important;
+    text-align: center !important; 
+    }
+  .ln-three {
+    right: 0px !important;
+    top: 0px !important;
+    font-size: 48px !important;
+    text-align: center !important; 
+    }
+  }
+@media (max-width: 575px) {
+/* Thankyou page */
+  #font-thankyou-bold {
+    font-size: 17px;
+    font-weight: 500;
+    }
+  #line-height-thankyou {
+    line-height: 150%;
+    }
+  #thankyou-bkgnd {
+    background-color: rgba(204,249,204,1);
+    }
+/* End thankyou page */
+/* Contactus page */
+  #Contactus-fonts {
+    font-size: 14px !important;
+    line-height: 125%;
+    
+    }
+/* End contactus */
+/* Terms page */
+  #font-terms-big {
+    font-size: 20px;
+    }
+  #line-height-terms {
+    line-height: 150%;
+    }
+/* end terms page */
+}
+/* End media queries */
+
+/* Menu background colors */
+.royal {background-color: royalblue;}
+.rebecca {background-color: rebeccapurple;}
+.dolive {background-color: darkolivegreen;}
+.cadet {background-color: cadetblue;}
+.mslate {background-color: mediumslateblue;}
+
+/* use these as classes in divs */
+.pline-space {white-space: pre-wrap;}
+.p1line-space {white-space: pre-wrap;margin-top:.1rem;margin-bottom:0rem;}
+.p2line-space {white-space: pre-wrap;margin-top:.1rem;margin-bottom:.1rem;}
+.p4line-space {white-space: pre-wrap;margin-top:.2rem;margin-bottom:.2rem;}
+.p6line-space {white-space: pre-wrap;margin-top:.3rem !important;margin-bottom:.3rem !important;}
+.p8line-space {white-space: pre-wrap;margin-top:.4rem;margin-bottom:.4rem;}
+.p10line-space {white-space: pre-wrap;margin-top:.5rem;margin-bottom:.5rem;}
+.p12line-space {white-space: pre-wrap;margin-top:.6rem;margin-bottom:.6rem;}
+.p12line-space {white-space: pre-wrap;margin-top:.6rem;margin-bottom:.6rem;}
+.p16line-space {white-space: pre-wrap;margin-top:.8rem;margin-bottom:.8rem;}
+.p30line-space {white-space: pre-wrap;margin-top:1.5rem !important;margin-bottom:1.5rem !important;}
+
+.text-center {text-align: center;}
+.text-highlight-md {font-weight: 700; font-size:24px; text-align: center;}
+.text-highlight-ms-italic {font-weight:700;font-style:italic;font-size:18px; text-align: center;}
+.text-highlight-italic {font-style:italic;font-size:16px; text-align: center;}
+.text-highlight-italic-bold {font-weight:700;font-style:italic;font-size:16px; text-align: center;}
+
+.black-sub-heading {color:black;font-weight:bold;font-size:17px;text-align:left;mt-3}
+.f10 {font-size: 10px}
+.f11 {font-size: 11px}
+.f12 {font-size: 12px}
+.f13 {font-size: 13px}
+.f14 {font-size: 14px}
+.f15 {font-size: 15px}
+.f16 {font-size: 16px}
+.f17 {font-size: 17px}
+.f18 {font-size: 18px}
+.f18-bold {font-size: 18px;font-weight:700}
+.f19 {font-size: 19px}
+.f20 {font-size: 20px}
+.f21 {font-size: 21px}
+.f22 {font-size: 22px}
+.f24 {font-size: 24px}
+.pl-20 {padding-left: 20px !important;}
+.pl-30 {padding-left: 30px !important;}
+.color-blue {color: #0077c8;}
+.color-black {color: black;}
+ul.a {list-style-type: none;} /* Per https://www.w3schools.com/css/css_list.asp turn of bullets for the list. */
+ul.b {list-style-type: circle;} /* Per https://www.w3schools.com/css/css_list.asp hollow bullet. */
+/*
+.details-cont {position: relative;}
+.details-list {
+  position: relative;
+  top: 100%;
+  left: 0;
+  display: list-item;
+  float: left;
+  min-width: 10rem;
+  padding: 0.5rem 0;
+  margin: 0.125rem 0 0;
+  font-size: 1rem;
+  color: black;
+  text-align: left;
+  list-style: none;
+  background-clip: padding-box;
+}
+*/

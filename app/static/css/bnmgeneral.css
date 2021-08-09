@@ -1,0 +1,67 @@
+/* General permanent bnm css  */
+/* Examples:  add to Bootstrap selections or are already widely used */
+
+/* bnm widely used */
+.red-bdr {border:1px solid red;}
+.blank-space {white-space: pre-wrap;}
+.mk-bold {font-weight: bold;}
+.ln-ht2 {line-height: 200%;}  /* An old holdover - may be used in the website */
+.ln-ht80 {line-height: 80%;}
+.ln-ht110 {line-height: 110%;}
+.ln-ht120 {line-height: 120%;}
+.ln-ht125 {line-height: 125%;}
+.ln-ht150 {line-height: 150%;}
+.ln-ht175 {line-height: 175%;}
+.ln-ht200 {line-height: 200%;}
+.h-10 {height: 10% !important;}
+.h-20 {height: 20% !important;}
+.h-30 {height: 30% !important;}
+.h-40 {height: 40% !important;}
+.h-60 {height: 60% !important;}
+.h-70 {height: 70% !important;}
+
+/* Add to bootstrap choices */
+.w-10 {width: 10% !important;}
+.w-20 {width: 20% !important;}
+.w-30 {width: 30% !important;}
+.w-35 {width: 35% !important;}
+.w-60 {width: 60% !important;}
+.w-70 {width: 70% !important;}
+
+/* All email buttons */
+.btn-email {
+  background-color: palevioletred;
+  border-color: palevioletred;
+  color: #fff;  /* white */
+  padding: 3px 15px;
+  font-size: 12px;
+}
+/* All message buttons */
+.btn-msg {
+  background-color: palevioletred;
+  border-color: palevioletred;
+  color: #fff;  /* white */
+  padding: 3px 15px;
+  font-size: 12px;
+}
+/* All download buttons */
+.btn-download {
+  background-color: lightsalmon;
+  border-color: lightsalmon;
+  color: #fff;  /* white */
+  padding: 3px 15px;
+  font-size: 12px;
+}
+/* Remaining button attributes. 3/17/21-not sure about their true use */
+/* used only for in text download links - we have 2 */
+a:visited {
+  color: red;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:hover {
+  color: Navy;
+  background-color: transparent;
+  text-decoration: underline;
+/* End of in text download links */
+}

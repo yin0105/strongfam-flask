@@ -3,9 +3,10 @@ from flask import render_template
 from datetime import datetime, date
 import time
 import re
-#import mysql.connector
+# import mysql.connector
 from flaskext.mysql import MySQL
-from app.forms import ShareMyIdeaForm, sendDocumentForm
+from forms import ShareMyIdeaForm, sendDocumentForm
+# from app.forms import ShareMyIdeaForm, sendDocumentForm 
 from werkzeug.utils import secure_filename
 import secrets
 import os
@@ -19,7 +20,8 @@ mysql = MySQL()
 app.config['MYSQL_DATABASE_USER'] = 'john1'  
 app.config['MYSQL_DATABASE_PASSWORD'] = 'aB22yy98'  
 app.config['MYSQL_DATABASE_DB'] = 'pffp'  
-app.config['MYSQL_DATABASE_HOST'] = 'mysql.fpproject.dreamhosters.com'  
+app.config['MYSQL_DATABASE_HOST'] = 'localhost'  
+# app.config['MYSQL_DATABASE_HOST'] = 'mysql.fpproject.dreamhosters.com'  
 mysql.init_app(app)
 
 conn = mysql.connect()
@@ -981,4 +983,5 @@ def senddocument():
 #from app import forms
 
 if __name__=='__main__':
-    main()
+    # main()
+    app.run(host='0.0.0.0', port=5000, debug=True)
