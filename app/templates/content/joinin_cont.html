@@ -125,21 +125,63 @@
 <div id="myModal" class="modal fade" role="dialog">  
     <div class="modal-dialog m-auto">  
  <!-- Modal content-->  
-         <div class="modal-content">  
-              <div class="modal-header">  
-                   <button type="button" class="close" data-dismiss="modal">×</button>  
-                   <h4 class="modal-title">Login Form Using Bootstrap Modal using Python Flask jquery Ajax password hash and session</h4>  
-              </div>  
-              <div class="modal-body">  
-                   <label>Username</label>  
-                   <input type="text" name="username" id="username" class="form-control" />  
-                   <br />  
-                   <label>Password</label>  
-                   <input type="password" name="password" id="password" class="form-control" />  
-                   <br />  
-                   <button type="button" name="login_button" id="login_button" class="btn btn-warning">Login</button>  
-              </div>  
-         </div>  
+            <div class="modal-content">  
+
+                <form method="POST" action="{{ url_for('sharemyidea') }}" id="shareMyIdeaForm" name="shareMyIdeaForm">
+
+                    <div class="modal-header">
+                        <h4 class="modal-title ml-4 mr-1">Send in a message or question</h4>  
+                        <button type="button" class="close" data-dismiss="modal">×</button>  
+                    </div>  
+
+                    <div class="modal-body">
+
+                        <div class="form-row">
+                            <div class="form-group col-md-10 offset-md-1 required">
+                                <label for="subject">Select a subject</label>
+                                <select id="subject" name="subject" class="form-control" required title="Subject">
+                                <option value="" selected>Choose...</option>
+                                {%for subject in subjects_list%}   
+                                <option value="{{subject[0]}}">{{subject[1]}}</option> 
+                                {%endfor%} 
+                                </select>
+                                <div class="invalid-feedback"></div>
+                            </div>  
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-10 offset-md-1 required">
+                                <label for="visname">Name</label>
+                                <!-- <select id="visname" name="subject" class="form-control" required title="Subject"> -->
+                                {{ form.visname(class=" form-control restrictedText", placeholder="", title="PI Last Name") }}
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-10 offset-md-1 required">
+                                <label for="visemail">Email</label>
+                                {{ form.visemail(class="form-control", type="email", placeholder="", title="PI Email") }}
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-10 offset-md-1 required">
+                                {{ form.message.label }}
+                                {{ form.message(class="form-control", title=form.message.label.text) }}
+                                <!-- <small id="messageHelpBlock" class="form-text text-muted">
+                                    Maximum 360 characters.
+                                </small> -->
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+
+
+                        <button type="button" name="login_button" id="login_button" class="btn btn-warning">Login</button>  
+                    </div> 
+                </form> 
+            </div>  
     </div>  
 </div>
 

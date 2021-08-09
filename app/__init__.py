@@ -5,7 +5,7 @@ import time
 import re
 # import mysql.connector
 from flaskext.mysql import MySQL
-from forms import ShareMyIdeaForm, sendDocumentForm
+from forms import ShareMyIdeaForm, sendDocumentForm, MessageForm
 # from app.forms import ShareMyIdeaForm, sendDocumentForm 
 from werkzeug.utils import secure_filename
 import secrets
@@ -337,28 +337,35 @@ def activities():
 
 @app.route("/joinin/")
 def joinin():
+    form = MessageForm(request.form)
+    crsr.execute('select subjectcode, shortdesc from messagesubj where active=true and menusequence is not null order by menusequence') 
+    #fetch all rows and store as a set of tuples 
+    subjects_list = crsr.fetchall()
+
     return render_template("joinin.html",\
-    projname = projname,\
-    copyrightmsg = copyrightmsg,\
-    projaddr1 = projaddr1,\
-    projaddr2 = projaddr2,\
-    joinin_itemtxt1 = joinin_itemtxt[0],\
-    joinin_itemtxt2 = joinin_itemtxt[1],\
-    joinin_itemtxt3 = joinin_itemtxt[2],\
-    joinin_itemtxt4 = joinin_itemtxt[3],\
-    joinin_itemtxt5 = joinin_itemtxt[4],\
-    joinin_itemtxt6 = joinin_itemtxt[5],\
-    joinin_itemtxt7 = joinin_itemtxt[6],\
-    joinin_itemtxt8 = joinin_itemtxt[7],\
-    joinin_itemtxt9 = joinin_itemtxt[8],\
-    joinin_itemtxt10 = joinin_itemtxt[9],\
-    joinin_itemtxt11 = joinin_itemtxt[10],\
-    joinin_itemtxt12 = joinin_itemtxt[11],\
-    joinin_itemtxt13 = joinin_itemtxt[12],\
-    joinin_itemtxt14 = joinin_itemtxt[13],\
-    joinin_itemtxt15 = joinin_itemtxt[14],\
-    footer_itemtxt1 = footer_itemtxt[0],\
-    footer_itemtxt2 = footer_itemtxt[1])
+        form = form,\
+        subjects_list = subjects_list,\
+        projname = projname,\
+        copyrightmsg = copyrightmsg,\
+        projaddr1 = projaddr1,\
+        projaddr2 = projaddr2,\
+        joinin_itemtxt1 = joinin_itemtxt[0],\
+        joinin_itemtxt2 = joinin_itemtxt[1],\
+        joinin_itemtxt3 = joinin_itemtxt[2],\
+        joinin_itemtxt4 = joinin_itemtxt[3],\
+        joinin_itemtxt5 = joinin_itemtxt[4],\
+        joinin_itemtxt6 = joinin_itemtxt[5],\
+        joinin_itemtxt7 = joinin_itemtxt[6],\
+        joinin_itemtxt8 = joinin_itemtxt[7],\
+        joinin_itemtxt9 = joinin_itemtxt[8],\
+        joinin_itemtxt10 = joinin_itemtxt[9],\
+        joinin_itemtxt11 = joinin_itemtxt[10],\
+        joinin_itemtxt12 = joinin_itemtxt[11],\
+        joinin_itemtxt13 = joinin_itemtxt[12],\
+        joinin_itemtxt14 = joinin_itemtxt[13],\
+        joinin_itemtxt15 = joinin_itemtxt[14],\
+        footer_itemtxt1 = footer_itemtxt[0],\
+        footer_itemtxt2 = footer_itemtxt[1])
 
 @app.route("/results/")
 def results():

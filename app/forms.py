@@ -79,3 +79,29 @@ class ShareMyIdeaForm(FlaskForm):
 class sendDocumentForm(FlaskForm):
     irsfield = FileField(validators=[FileRequired(),FileAllowed(['pdf','jpg', 'png'])])
     budfield = FileField(validators=[FileRequired(),FileAllowed(['xls','xlsx'])])
+
+
+class MessageForm(FlaskForm):
+    class Meta:
+        #set to 1 week
+        csrf_time_limit = 604800
+    
+    #otherstate = SelectField('State', validators=[validators.optional()], validate_choice=False)
+    visname = StringField('Name ', validators=[validators.required(), validators.Length(3, 50)], render_kw={"maxlength": "50"})
+    visemail = StringField('Email ', validators=[validators.required(), validators.Email()], render_kw={"maxlength": "700"})
+    message = TextAreaField('Message ', validators=[validators.Length(0, 900)], render_kw={"rows": 3,"maxlength": "900"})
+    
+
+    submit = SubmitField('Submit')
+
+    # def validate(self, extra_validators=None):
+    #     if super().validate(extra_validators):
+
+    #         # your logic here e.g.
+    #         if not (self.picv.data or self.aboutpeople.data):
+    #             self.picv.errors.append('Either the PI’s CV web address or the About the PI… field must have a value.')
+    #             return False
+    #         else:
+    #             return True
+
+    #     return False
