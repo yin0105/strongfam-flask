@@ -19,7 +19,7 @@
         <div class="list-content text-left">
             <h2 class="sub-heading">{{ joinin_itemtxt3 }}</h2>
             <p>{{ joinin_itemtxt4 }}</p>
-            <a data-target="#myModal" role="button" class="btn btn-msg" data-toggle="modal"><span class="glyphicon glyphicon-hand-up"></span>Contact us</a>
+            <a data-target="#myModal" role="button" href="#" class="btn btn-msg" data-toggle="modal"><span class="glyphicon glyphicon-hand-up"></span>Contact us</a>
             <!-- <a href="{{ url_for('whyapply') }}" class="btn btn-msg">Contact us</a> -->
             <a href="{{ url_for('whyapply') }}" class="btn btn-site">About grants</a>
         </div>
@@ -127,7 +127,8 @@
  <!-- Modal content-->  
             <div class="modal-content" style="background-color: #F7F2C5;">  
 
-                <form method="POST" action="{{ url_for('sharemyidea') }}" id="shareMyIdeaForm" name="shareMyIdeaForm">
+                <form method="POST" action="{{ url_for('sharemyidea') }}" id="subjectForm" name="subjectForm">
+                    {{ form.csrf_token }}
 
                     <div class="modal-header">
                         <h1 class="modal-title ml-4 mr-1 text-highlight" style="color:Navy;">Send in a message or question</h1>
@@ -138,7 +139,7 @@
 
                         <div class="form-row">
                             <div class="form-group col-md-12 required">
-                                {{ form.subject.label }}
+                                <label for="subject">Select a subject</label>
                                 <select id="subject" name="subject" class="form-control" required title="Subject">
                                     <option value="" selected>Choose...</option>
                                     {%for subject in subjects_list%}   
@@ -179,7 +180,8 @@
 
                         <!-- <button type="button" name="login_button" id="login_button" class="btn btn-warning">Login</button>   -->
                         <div class="form-row">
-                            <a role="button" class="btn btn-msg m-auto"></span>Submit</a>
+                            <!-- <a role="button" class="btn btn-msg m-auto"></span>Submit</a> -->
+                            {{ form.submit(class="btn btn-msg m-auto", title=form.submit.label.text) }}
                         </div>
                         
                     </div> 
@@ -218,52 +220,61 @@
             })
         })
 
-        // $('#shareMyIdeaForm').submit(function (e) {
-        //     var url = "{{ url_for('savemyidea') }}"; // send the form data here.
-        //     $('#shareMyIdeaForm .is-invalid').removeClass('is-invalid');
-        //     $('.alert_msg').html('');
-        //     $('.alert').hide()
+        $('#subjectForm').submit(function (e) {
+            var url = "{{ url_for('send_message') }}"; // send the form data here.
+            $('#subjectForm .is-invalid').removeClass('is-invalid');
+            $('.alert_msg').html('');
+            $('.alert').hide();
 
-        //     $('.loading').show();
-        //     $.ajax({
-        //         type: "POST",
-        //         url: url,
-        //         data: $('#shareMyIdeaForm').serialize(), // serializes the form's elements.
-        //         success: function (resp) {
-        //             console.log(resp.status)  // display the returned data in the console.
-        //             if(resp.status == 'success'){
-        //                 //$('.alert-success').find('.alert_msg').html(resp.message);
-        //                 //$('.alert-success').show();
-        //                 document.getElementById("shareMyIdeaForm").reset();
-        //                 $('#shareMyIdeaForm .is-invalid').removeClass('is-invalid');
-        //                 $('#shareMyIdeaForm .is-valid').removeClass('is-valid');
-        //                 window.location.href = resp.url;
+            $('.loading').show();
 
-        //             } else {                            
-        //                 var errors = resp.data;
-        //                 var error_list = '<ul>';
-        //                 $.each(errors, function(key, error){
-        //                     if(key !== 'undefined' && key !== 'csrf_token') {
-        //                         $('#'+key).addClass('is-invalid');                                
-        //                         $('#'+key).parent().find('.invalid-feedback').html(error[0]);                                
-        //                         error_list += '<li><span data-target="#'+key+'" class="error_list">' + $('#'+key).attr('title') + '</span>: ' + error[0]+'</li>';
-        //                     } else {
-        //                         error_list += '<li>'+error[0]+'</li>';
-        //                     }                                
-        //                 });                          
-        //                 error_list += "</ul>";
-        //                 //$('.alert-danger').find('.alert_msg').html(resp.message);                            
-        //                 $('.alert-danger').find('.alert_msg').html(error_list);
-        //                 $('.alert-danger').show();
-        //                 //$('html,body').animate({scrollTop: $('#shareMyIdeaForm .is-invalid').first().offset().top - 100},'slow');
-        //             }
+            console.log("send_message = ", url);
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: $('#subjectForm').serialize(), // serializes the form's elements.
+                success: function (resp) {
+                    console.log(resp.status)  // display the returned data in the console.
+                    if(resp.status == 'success'){
+                        console.log("data = ", resp);
+                        console.log("success");
+                        //$('.alert-success').find('.alert_msg').html(resp.message);
+                        //$('.alert-success').show();
+                        // document.getElementById("subjectForm").reset();
+                        // $('#subjectForm .is-invalid').removeClass('is-invalid');
+                        // $('#subjectForm .is-valid').removeClass('is-valid');
+                        // window.location.href = resp.url;
 
-        //             $('html,body').animate({scrollTop: $('.alert').first().offset().top - 100},'slow');
-        //             $('.loading').hide();
-        //         }
-        //     });
-        //     e.preventDefault(); // block the traditional submission of the form.
-        // });
+                    } else {                            
+                        var errors = resp.errors;
+                        console.log("error = ", resp);
+                        var error_list = '<ul>';
+                        $.each(errors, function(key, error){
+                            if(key !== 'undefined' && key !== 'csrf_token') {
+                                $('#'+key).addClass('is-invalid');                                
+                                $('#'+key).parent().find('.invalid-feedback').html(error[0]);                                
+                                error_list += '<li><span data-target="#'+key+'" class="error_list">' + $('#'+key).attr('title') + '</span>: ' + error[0]+'</li>';
+                            } else {
+                                error_list += '<li>'+error[0]+'</li>';
+                            }                                
+                        });                          
+                        error_list += "</ul>";
+                        //$('.alert-danger').find('.alert_msg').html(resp.message);                            
+                        $('.alert-danger').find('.alert_msg').html(error_list);
+                        $('.alert-danger').show();
+                        $('html,body').animate({scrollTop: $('#subjectForm .is-invalid').first().offset().top - 100},'slow');
+                    }
+
+                    // $('html,body').animate({scrollTop: $('.alert').first().offset().top - 100},'slow');
+                    // $('.loading').hide();
+                },
+                
+                error: function(resp) {
+                    console.log("22:: errors = ", resp);
+                },
+            });
+            e.preventDefault(); // block the traditional submission of the form.
+        });
 
         $(document).on('click','.error_list',function(){
             var target = $(this).data('target');

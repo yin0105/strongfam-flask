@@ -36,14 +36,7 @@
   padding: 3px 15px;
   font-size: 12px;
 }
-/* All message buttons */
-.btn-msg {
-  background-color: palevioletred;
-  border-color: palevioletred;
-  color: #fff;  /* white */
-  padding: 3px 15px;
-  font-size: 12px;
-}
+
 /* All download buttons */
 .btn-download {
   background-color: lightsalmon;

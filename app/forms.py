@@ -86,22 +86,21 @@ class MessageForm(FlaskForm):
         #set to 1 week
         csrf_time_limit = 604800
     
-    subject = SelectField('Select a subject', validators=[validators.optional()], validate_choice=False)
+    # subject = SelectField('Select a subject', validators=[validators.optional()], validate_choice=False)
     visname = StringField('Name ', validators=[validators.required(), validators.Length(3, 50)], render_kw={"maxlength": "50"})
     visemail = StringField('Email ', validators=[validators.required(), validators.Email()], render_kw={"maxlength": "700"})
-    message = TextAreaField('Message ', validators=[validators.Length(0, 900)], render_kw={"rows": 3,"maxlength": "480"})
-    
+    message = TextAreaField('Message ', validators=[validators.Length(1, 480)], render_kw={"rows": 3,"maxlength": "480"})    
 
     submit = SubmitField('Submit')
 
     # def validate(self, extra_validators=None):
     #     if super().validate(extra_validators):
 
-    #         # your logic here e.g.
-    #         if not (self.picv.data or self.aboutpeople.data):
-    #             self.picv.errors.append('Either the PI’s CV web address or the About the PI… field must have a value.')
-    #             return False
-    #         else:
-    #             return True
+    #         # # your logic here e.g.
+    #         # if not (self.picv.data or self.aboutpeople.data):
+    #         #     self.picv.errors.append('Either the PI’s CV web address or the About the PI… field must have a value.')
+    #         #     return False
+    #         # else:
+    #         return True
 
     #     return False

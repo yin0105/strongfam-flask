@@ -989,15 +989,23 @@ def senddocument():
     return render_template('senddocument.html', form=form, existingprojnum=existingprojnum)
 
 
-@app.route('/ajax/send-message', methods=['GET'])
-def savemyidea():
+@app.route('/ajax/send-message', methods=['POST'])
+def send_message():
     form = MessageForm(request.form)
-    status = 'error'
+
     if form.validate_on_submit():   
-        subject = request.form['subject'] if request.form['subject'] !='' else None
+        subject = request.form['subject']
         visname = form.visname.data.title()
-        vismail = form.piemail.data
+        visemail = form.visemail.data
         message = form.message.data
+        print('INSERT INTO message (subjectcode, visname, visemail, message) VALUES ("{}", "{}", "{}", "{}")'.format(subject, visname, visemail, message))
+        crsr.execute('INSERT INTO message (subjectcode, visname, visemail, message) VALUES ("{}", "{}", "{}", "{}")'.format(subject, visname, visemail, message))
+        conn.commit()
+
+        return jsonify(status='success')
+    else:
+        print("error = ", form.errors)
+        return jsonify(status='error', errors=form.errors)
         
         # crsr.execute("""
         #     INSERT INTO idea1 (projname,reqamount,newprojnum,orgname,orgwebaddr,schoolname,schoolwebaddr,pititle,picv,pifirstname,pimi,pilastname,pisuffix,piemail,pitele,piaddr1,piaddr2,picity,pistate,pizip,othertitle,otherfirstname,othermi,otherlastname,othersuffix,otheremail,othertele,otheraddr1,otheraddr2,othercity,otherstate,otherzip,irsletter_TF,budget_TF,confirmsent_TF,goal,description,aboutpeople,relevance,dissemination,projother) \
@@ -1025,7 +1033,7 @@ def savemyidea():
         # return jsonify(status = status, data=[], message=msg, url=url)
 
     # return jsonify(status = status, data=form.errors, message='One or more items need revision.  Please modify.')
-    return jsonify(ok='ok')
+    
 
 #from app import forms
 

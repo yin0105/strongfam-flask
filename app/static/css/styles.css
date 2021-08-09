@@ -90,6 +90,16 @@ select.form-control { color: #a8a8a8;}
 }
 .btn-site:hover {background-color: transparent; color: #25bfbb;}
 
+/* All message buttons */
+.btn-msg {
+  background-color: palevioletred;
+  border-color: palevioletred;
+  color: #fff;  /* white */
+  padding: 3px 15px;
+  font-size: 12px;
+}
+.btn-msg:hover {background-color: transparent; color: palevioletred;}
+
 .btn-blue {  background-color: #17a2b8; border-color: #17a2b8;}
 .btn-blue:hover {background-color: transparent; color: #17a2b8;}
 
