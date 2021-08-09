@@ -940,6 +940,7 @@ def savemyidea():
         return jsonify(status = status, data=[], message=msg, url=url)
 
     return jsonify(status = status, data=form.errors, message='One or more items need revision.  Please modify.')
+    
 
 @app.route('/send-document', methods=['GET', 'POST'])
 def senddocument():
@@ -986,6 +987,45 @@ def senddocument():
             flash('One or more items is incorrect. Please try with valid files', 'error')
             
     return render_template('senddocument.html', form=form, existingprojnum=existingprojnum)
+
+
+@app.route('/ajax/send-message', methods=['GET'])
+def savemyidea():
+    form = MessageForm(request.form)
+    status = 'error'
+    if form.validate_on_submit():   
+        subject = request.form['subject'] if request.form['subject'] !='' else None
+        visname = form.visname.data.title()
+        vismail = form.piemail.data
+        message = form.message.data
+        
+        # crsr.execute("""
+        #     INSERT INTO idea1 (projname,reqamount,newprojnum,orgname,orgwebaddr,schoolname,schoolwebaddr,pititle,picv,pifirstname,pimi,pilastname,pisuffix,piemail,pitele,piaddr1,piaddr2,picity,pistate,pizip,othertitle,otherfirstname,othermi,otherlastname,othersuffix,otheremail,othertele,otheraddr1,otheraddr2,othercity,otherstate,otherzip,irsletter_TF,budget_TF,confirmsent_TF,goal,description,aboutpeople,relevance,dissemination,projother) \
+        #     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+        #     , (projname,reqamount,None,orgname,orgwebaddr,schoolname,schoolwebaddr,pititle,picv,pifirstname,pimi,pilastname,pisuffix,piemail,pitele,piaddr1,piaddr2,picity,pistate,pizip,othertitle,otherfirstname,othermi,otherlastname,othersuffix,otheremail,othertele,otheraddr1,otheraddr2,othercity,otherstate,otherzip,irsletter_TF,budget_TF,confirmsent_TF,goal,description,aboutpeople,relevance,dissemination,projother)
+        # )
+        # projnum = crsr.lastrowid;
+
+        # #update the existing project record with new project number
+        # crsr.execute("UPDATE idea1 SET newprojnum=%s WHERE projnum=%s", (projnum,existingprojnum))
+        # conn.commit()
+        
+        # status = 'success'
+        # today = date.today()        
+        # msg = "<b>Thank you</b> for sharing your Idea with us.<br><br> \
+        #         We look forward to reading and learning about it.<br><br>\
+        #         Your Project Number is: <b> " + str(projnum) + " </b> <br> <br> \
+        #         Your Submission date is: <b> " + str(today.strftime("%m/%d/%Y")) + " </b> <br> <br> \
+        #         Please save these as they may be required for communicating with us about the project. <br> <br> \
+        #         Because we may use this and other information submitted with your Idea to verfiy persons connected with this project, \
+        #         we suggest you maintain such information securely."
+                
+        # url = url_for('whatexpect');
+        # flash(Markup(msg),'success')
+        # return jsonify(status = status, data=[], message=msg, url=url)
+
+    # return jsonify(status = status, data=form.errors, message='One or more items need revision.  Please modify.')
+    return jsonify(ok='ok')
 
 #from app import forms
 

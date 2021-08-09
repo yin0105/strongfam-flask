@@ -125,60 +125,63 @@
 <div id="myModal" class="modal fade" role="dialog">  
     <div class="modal-dialog m-auto">  
  <!-- Modal content-->  
-            <div class="modal-content">  
+            <div class="modal-content" style="background-color: #F7F2C5;">  
 
                 <form method="POST" action="{{ url_for('sharemyidea') }}" id="shareMyIdeaForm" name="shareMyIdeaForm">
 
                     <div class="modal-header">
-                        <h4 class="modal-title ml-4 mr-1">Send in a message or question</h4>  
+                        <h1 class="modal-title ml-4 mr-1 text-highlight" style="color:Navy;">Send in a message or question</h1>
                         <button type="button" class="close" data-dismiss="modal">×</button>  
                     </div>  
 
-                    <div class="modal-body">
+                    <div class="modal-body px-4">
 
                         <div class="form-row">
-                            <div class="form-group col-md-10 offset-md-1 required">
-                                <label for="subject">Select a subject</label>
+                            <div class="form-group col-md-12 required">
+                                {{ form.subject.label }}
                                 <select id="subject" name="subject" class="form-control" required title="Subject">
-                                <option value="" selected>Choose...</option>
-                                {%for subject in subjects_list%}   
-                                <option value="{{subject[0]}}">{{subject[1]}}</option> 
-                                {%endfor%} 
+                                    <option value="" selected>Choose...</option>
+                                    {%for subject in subjects_list%}   
+                                        <option value="{{subject[0]}}">{{subject[1]}}</option> 
+                                    {%endfor%} 
                                 </select>
                                 <div class="invalid-feedback"></div>
                             </div>  
                         </div>
 
                         <div class="form-row">
-                            <div class="form-group col-md-10 offset-md-1 required">
-                                <label for="visname">Name</label>
-                                <!-- <select id="visname" name="subject" class="form-control" required title="Subject"> -->
-                                {{ form.visname(class=" form-control restrictedText", placeholder="", title="PI Last Name") }}
+                            <div class="form-group col-md-12 required">
+                                {{ form.visname.label }}
+                                {{ form.visname(class=" form-control restrictedText", placeholder=form.visname.label.text, title="VIS Name") }}
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>
 
                         <div class="form-row">
-                            <div class="form-group col-md-10 offset-md-1 required">
-                                <label for="visemail">Email</label>
-                                {{ form.visemail(class="form-control", type="email", placeholder="", title="PI Email") }}
+                            <div class="form-group col-md-12 required">
+                                {{ form.visemail.label }}
+                                {{ form.visemail(class="form-control", type="email", placeholder=form.visemail.label.text, title="VIS Email") }}
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>
 
                         <div class="form-row">
-                            <div class="form-group col-md-10 offset-md-1 required">
+                            <div class="form-group col-md-12 required">
                                 {{ form.message.label }}
                                 {{ form.message(class="form-control", title=form.message.label.text) }}
-                                <!-- <small id="messageHelpBlock" class="form-text text-muted">
-                                    Maximum 360 characters.
-                                </small> -->
+                                <small id="messageHelpBlock" class="form-text text-muted">
+                                    The maximum length is 480 characters or about 80 words.
+                                </small>
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>
 
 
-                        <button type="button" name="login_button" id="login_button" class="btn btn-warning">Login</button>  
+                        <!-- <button type="button" name="login_button" id="login_button" class="btn btn-warning">Login</button>   -->
+                        <div class="form-row">
+                            <a role="button" class="btn btn-msg m-auto"></span>Submit</a>
+                        </div>
+                        
                     </div> 
                 </form> 
             </div>  
@@ -186,25 +189,141 @@
 </div>
 
 <script type="text/javascript">
-    $('.modal-header').on('mousedown', function(downEvt) {
-        console.log("modal-header: mousedown");
-        var $draggable = $(this);
-        var x = downEvt.pageX - $draggable.offset().left,
-            y = downEvt.pageY - $draggable.offset().top;
-        $('body').on('mousemove.draggable', function(moveEvt) {
-            $draggable.closest('.modal-dialog').offset({
-                "left": moveEvt.pageX - x,
-                "top": moveEvt.pageY - y
-            })            
-        })
+    var ctrlDown = false,
+        ctrlKey = 17,
+        cmdKey = 91,
+        vKey = 86;
 
-        $('body').on('mouseup', function() {
-            $('body').off('mousemove.draggable')
-        })
-
-        $draggable.closest('.modal').one('bs.modal.hide', function() {
-            $('body').off('mousemove.draggable')
-        })
-    })
+    var hintText = 'This field accepts only characters, numbers, ampersands and hyphens.';
     
+    $(document).ready(function() {
+        $('.modal-header').on('mousedown', function(downEvt) {
+            console.log("modal-header: mousedown");
+            var $draggable = $(this);
+            var x = downEvt.pageX - $draggable.offset().left,
+                y = downEvt.pageY - $draggable.offset().top;
+            $('body').on('mousemove.draggable', function(moveEvt) {
+                $draggable.closest('.modal-dialog').offset({
+                    "left": moveEvt.pageX - x,
+                    "top": moveEvt.pageY - y
+                })            
+            })
+
+            $('body').on('mouseup', function() {
+                $('body').off('mousemove.draggable')
+            })
+
+            $draggable.closest('.modal').one('bs.modal.hide', function() {
+                $('body').off('mousemove.draggable')
+            })
+        })
+
+        // $('#shareMyIdeaForm').submit(function (e) {
+        //     var url = "{{ url_for('savemyidea') }}"; // send the form data here.
+        //     $('#shareMyIdeaForm .is-invalid').removeClass('is-invalid');
+        //     $('.alert_msg').html('');
+        //     $('.alert').hide()
+
+        //     $('.loading').show();
+        //     $.ajax({
+        //         type: "POST",
+        //         url: url,
+        //         data: $('#shareMyIdeaForm').serialize(), // serializes the form's elements.
+        //         success: function (resp) {
+        //             console.log(resp.status)  // display the returned data in the console.
+        //             if(resp.status == 'success'){
+        //                 //$('.alert-success').find('.alert_msg').html(resp.message);
+        //                 //$('.alert-success').show();
+        //                 document.getElementById("shareMyIdeaForm").reset();
+        //                 $('#shareMyIdeaForm .is-invalid').removeClass('is-invalid');
+        //                 $('#shareMyIdeaForm .is-valid').removeClass('is-valid');
+        //                 window.location.href = resp.url;
+
+        //             } else {                            
+        //                 var errors = resp.data;
+        //                 var error_list = '<ul>';
+        //                 $.each(errors, function(key, error){
+        //                     if(key !== 'undefined' && key !== 'csrf_token') {
+        //                         $('#'+key).addClass('is-invalid');                                
+        //                         $('#'+key).parent().find('.invalid-feedback').html(error[0]);                                
+        //                         error_list += '<li><span data-target="#'+key+'" class="error_list">' + $('#'+key).attr('title') + '</span>: ' + error[0]+'</li>';
+        //                     } else {
+        //                         error_list += '<li>'+error[0]+'</li>';
+        //                     }                                
+        //                 });                          
+        //                 error_list += "</ul>";
+        //                 //$('.alert-danger').find('.alert_msg').html(resp.message);                            
+        //                 $('.alert-danger').find('.alert_msg').html(error_list);
+        //                 $('.alert-danger').show();
+        //                 //$('html,body').animate({scrollTop: $('#shareMyIdeaForm .is-invalid').first().offset().top - 100},'slow');
+        //             }
+
+        //             $('html,body').animate({scrollTop: $('.alert').first().offset().top - 100},'slow');
+        //             $('.loading').hide();
+        //         }
+        //     });
+        //     e.preventDefault(); // block the traditional submission of the form.
+        // });
+
+        $(document).on('click','.error_list',function(){
+            var target = $(this).data('target');
+            $('html,body').animate({scrollTop: $(target).offset().top - 100},'slow');
+        });
+
+        // Inject our CSRF token into our AJAX request.
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", "{{ form.csrf_token._value() }}")
+                }
+            }
+        })
+
+        
+
+        $(document).keydown(function(e) {
+            if (e.keyCode == ctrlKey || e.keyCode == cmdKey) ctrlDown = true;
+        }).keyup(function(e) {
+            if (e.keyCode == ctrlKey || e.keyCode == cmdKey) ctrlDown = false;
+        });
+
+        
+        $("textarea").on("paste", function(e){
+            // access the clipboard using the api
+            var pastedData = e.originalEvent.clipboardData.getData('text/plain');
+            
+            $(this).addClass('is-invalid');
+            var max = $(this).prop("maxlength");
+            if(pastedData.length > max){
+                var msg = "<small>You have entered "+pastedData.length+" characters. Your entry has been truncated to "+max+ " characters automatically.</small>";
+                $(this).parent().append('<div class="invalid-length text-danger">'+msg+'</div>');
+            }
+        });
+        $("textarea").keypress(function(e){
+            if($(this).length <= $(this).prop("maxlength")) {
+                $(this).parent().find('.invalid-length').remove();
+            }
+        });
+
+        var hintContent = '<small class="form-text text-muted">'+hintText+'</small>';
+        $('.restrictedText').after(hintContent);
+
+        // The function you currently have
+        $('.restrictedText').keypress(function (e) {
+            var allowedChars = new RegExp("^[a-zA-Z0-9 &\-]+$");
+            var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+            if (allowedChars.test(str)) {
+                return true;
+            }
+            e.preventDefault();
+            return false;
+        }).keyup(function() {
+            // the addition, which whill check the value after a keyup (triggered by Ctrl+V)
+            // We take the same regex as for allowedChars, but we add ^ after the first bracket : it means "all character BUT these"
+            var forbiddenChars = new RegExp("[^a-zA-Z0-9 &\-]", 'g');
+            if (forbiddenChars.test($(this).val())) {
+                //$(this).val($(this).val().replace(forbiddenChars, ''));
+            }
+        });
+    })
 </script>
