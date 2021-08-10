@@ -1,17 +1,26 @@
 from flask import Flask, request, flash, jsonify, url_for, redirect, Markup
 from flask import render_template
 from datetime import datetime, date
-import time
-import re
+import time, secrets, re, os
 # import mysql.connector
 from flaskext.mysql import MySQL
 from forms import ShareMyIdeaForm, sendDocumentForm, MessageForm
 # from app.forms import ShareMyIdeaForm, sendDocumentForm 
 from werkzeug.utils import secure_filename
-import secrets
-import os
+from flask_mail import Mail, Message
+
 
 app = Flask(__name__)
+mail= Mail(app)
+
+sender_email = 'ramis.17777@gmail.com'
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = sender_email
+app.config['MAIL_PASSWORD'] = 'NFEo$*590'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+mail = Mail(app)
 
 app.config.from_object(__name__)
 app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
@@ -1003,9 +1012,37 @@ def send_message():
         visname = form.visname.data.title()
         visemail = form.visemail.data
         message = form.message.data
-        print('INSERT INTO message (subjectcode, visname, visemail, message) VALUES ("{}", "{}", "{}", "{}")'.format(subject, visname, visemail, message))
+        # print('INSERT INTO message (subjectcode, visname, visemail, message) VALUES ("{}", "{}", "{}", "{}")'.format(subject, visname, visemail, message))
         crsr.execute('INSERT INTO message (subjectcode, visname, visemail, message) VALUES ("{}", "{}", "{}", "{}")'.format(subject, visname, visemail, message))
         conn.commit()
+
+        # Send email
+        crsr.execute("SELECT destemail FROM subjectcodeemails WHERE subjectcode='{}'".format(subject))
+        recipients = [destemail[0] for (destemail) in crsr.fetchall()]
+        print("recipients = ", recipients)
+        if len(recipients) > 0:
+            crsr.execute("SELECT shortdesc, subjectdesc FROM messagesubj WHERE subjectcode='{}'".format(subject))
+            messagesubj =  crsr.fetchone()
+            print(messagesubj[0], messagesubj[1])
+            msg = Message("Automated SFF message - {}".format(messagesubj[0]), sender=(visname, visemail), recipients = recipients, date = datetime.now().strftime('%m/%d/%Y %H:%M %p'))
+            # msg.body = "Hello Flask message sent from Flask-Mail"
+            msg.html = '''<h2>{}</h2>
+            {}
+            <p>
+            <div style="font-size: small;">This message was from an unmonitored mailbox.</div>
+            '''.format(messagesubj[0], message)
+            mail.send(msg)
+            # '''
+            # (a)Subject:  Automated SFF message - <shortdesc>.
+            # (b)Body:  “SFF received the following message:
+                                #     1.Date:  <subdate>  [formatted as mm/dd/yyyy  hh:mm  AM]
+            #     2.Email subject:  <subjectdesc>  [from table messagesubj]
+                                #     3.From:  <visname>
+                                #     4.Sender email:  <visemail>
+            #     5.Message:  <message>”
+            # (c)In smaller print at the bottom:  ‘This message was from an unmonitored mailbox.’
+            # '''
+            # to_email = destemail[0]
 
         return jsonify(status='success')
     else:
