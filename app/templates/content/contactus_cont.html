@@ -4,23 +4,189 @@
     </div>
     <div class="col-md-8 col-lg-6 pt-5 px-5" style="background-color:rgba(240,230,140,.5);">
         <div class="text-left">
-            <h1 class="text-highlight" style="color:Navy;">{{ contactus_itemtxt1 }}</h1>
-            <h2 class="text-highlight-ms-italic mt-4" style="color:Navy;">{{ contactus_itemtxt2 }}</h2>
+            <!-- <h1 class="text-highlight" style="color:Navy;">{{ contactus_itemtxt1 }}</h1> -->
+            <h1 class="modal-title m-3 text-highlight" style="color:Navy;">Send in a message or question</h1>
+            <!-- <h2 class="text-highlight-ms-italic mt-4" style="color:Navy;">{{ contactus_itemtxt2 }}</h2> -->
         </div>
-            <div class="p6line-space"> </div>
-        <div class"ml-5">
-            <p class="mt-4 mb-4" style="font-weight:700;">Mailing Address</p>
-            <p class="my-0 ml-5">{{ projname }}</p>
-            <p class="my-0 ml-5">{{ projaddr1 }}</p>
-            <p class="my-0 ml-5">{{ projaddr2 }}</p>
-            <p class="my-3 ml-5">{{ telephonenr }}</p>
-            <div class="p4line-space"> </div>
-            <p class="mt-4 mb-3 pb-4 ml-n1" style="font-weight:700;text-align:left">{{ contactus_itemtxt3 }}</p>
-            <p class="mt-3 mb-4" style="text-align: center">{{ contactus_itemtxt4 }}</p>
-            <p class="my-3 mb-5" style="text-align: center">{{ contactus_itemtxt5 }}</p>
-            <p class="my-3 pb-5 pt-4" style="text-align: center">{{ contactus_itemtxt6 }}</p>
+        <div>
+            <form method="POST" action="{{ url_for('send_message') }}" id="subjectForm" name="subjectForm">
+                {{ form.csrf_token }}
+
+                <div class="form-row">
+                    <div class="form-group col-md-12 required">
+                        <label for="subject">Select a subject</label>
+                        <select id="subject" name="subject" class="form-control" required title="Subject">
+                            <option value="" selected>Choose...</option>
+                            {%for subject in subjects_list%}   
+                                <option value="{{subject[0]}}">{{subject[1]}}</option> 
+                            {%endfor%} 
+                        </select>
+                        <div class="invalid-feedback"></div>
+                    </div>  
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12 required">
+                        {{ form.visname.label }}
+                        {{ form.visname(class=" form-control restrictedText", placeholder=form.visname.label.text, title="VIS Name") }}
+                        <div class="invalid-feedback"></div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12 required">
+                        {{ form.visemail.label }}
+                        {{ form.visemail(class="form-control", type="email", placeholder=form.visemail.label.text, title="VIS Email") }}
+                        <div class="invalid-feedback"></div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12 required">
+                        {{ form.message.label }}
+                        {{ form.message(class="form-control", title=form.message.label.text) }}
+                        <small id="messageHelpBlock" class="form-text text-muted">
+                            The maximum length is 480 characters or about 80 words.
+                        </small>
+                        <div class="invalid-feedback"></div>
+                    </div>
+                </div>
+
+
+                <!-- <button type="button" name="login_button" id="login_button" class="btn btn-warning">Login</button>   -->
+                <div class="form-row d-block mb-4">
+                    <!-- <a role="button" class="btn btn-msg m-auto"></span>Submit</a> -->
+                    <div class="d-flex">
+                        {{ form.submit(class="btn btn-msg m-auto", title=form.submit.label.text) }}
+                    </div>
+                    <small id="messageThanks" class="form-text text-muted text-center">
+                        Thank you for your message.
+                    </small>
+                </div>
+            </form> 
         </div>
     </div>
     <div class="col-md-2 col-lg-3">
     </div>
 </div>
+
+
+<script type="text/javascript">
+    var ctrlDown = false,
+        ctrlKey = 17,
+        cmdKey = 91,
+        vKey = 86;
+
+    var hintText = 'This field accepts only characters, numbers, ampersands and hyphens.';
+    
+    $(document).ready(function() {
+        $('#messageThanks').hide();
+        
+        $('#subjectForm').submit(function (e) {
+            var url = "{{ url_for('send_message') }}"; // send the form data here.
+            $('#subjectForm.is-invalid').removeClass('is-invalid');
+            $('.alert_msg').html('');
+            $('.alert').hide();
+            $('#subjectForm .is-invalid').removeClass('is-invalid');
+            $('#subjectForm .is-valid').removeClass('is-valid');
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: $('#subjectForm').serialize(), // serializes the form's elements.
+                success: function (resp) {
+                    if(resp.status == 'success'){
+                        $('#messageThanks').fadeIn();
+                        setTimeout(() => {
+                            $('#messageThanks').fadeOut();
+                        }, 3000);
+                        document.getElementById("subjectForm").reset();                        
+                    } else {                            
+                        var errors = resp.errors;
+                        var error_list = '<ul>';
+                        $.each(errors, function(key, error){
+                            if(key !== 'undefined' && key !== 'csrf_token') {
+                                $('#'+key).addClass('is-invalid');                                
+                                $('#'+key).parent().find('.invalid-feedback').html(error[0]);                                
+                                error_list += '<li><span data-target="#'+key+'" class="error_list">' + $('#'+key).attr('title') + '</span>: ' + error[0]+'</li>';
+                            } else {
+                                error_list += '<li>'+error[0]+'</li>';
+                            }                                
+                        });                          
+                        error_list += "</ul>";
+                        $('.alert-danger').find('.alert_msg').html(resp.message);                            
+                        $('.alert-danger').find('.alert_msg').html(error_list);
+                        $('.alert-danger').show();
+                        $('html,body').animate({scrollTop: $('#subjectForm .is-invalid').first().offset().top - 100},'slow');
+                    }
+
+                    // $('html,body').animate({scrollTop: $('.alert').first().offset().top - 100},'slow');
+                },
+                
+                error: function(resp) {
+                    console.log("errors = ", resp);
+                },
+            });
+            e.preventDefault(); // block the traditional submission of the form.
+        });
+
+        $(document).on('click','.error_list',function(){
+            var target = $(this).data('target');
+            $('html,body').animate({scrollTop: $(target).offset().top - 100},'slow');
+        });
+
+        // Inject our CSRF token into our AJAX request.
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", "{{ form.csrf_token._value() }}")
+                }
+            }
+        })        
+
+        $(document).keydown(function(e) {
+            if (e.keyCode == ctrlKey || e.keyCode == cmdKey) ctrlDown = true;
+        }).keyup(function(e) {
+            if (e.keyCode == ctrlKey || e.keyCode == cmdKey) ctrlDown = false;
+        });
+
+        
+        $("textarea").on("paste", function(e){
+            // access the clipboard using the api
+            var pastedData = e.originalEvent.clipboardData.getData('text/plain');
+            
+            $(this).addClass('is-invalid');
+            var max = $(this).prop("maxlength");
+            if(pastedData.length > max){
+                var msg = "<small>You have entered "+pastedData.length+" characters. Your entry has been truncated to "+max+ " characters automatically.</small>";
+                $(this).parent().append('<div class="invalid-length text-danger">'+msg+'</div>');
+            }
+        });
+        $("textarea").keypress(function(e){
+            if($(this).length <= $(this).prop("maxlength")) {
+                $(this).parent().find('.invalid-length').remove();
+            }
+        });
+
+        var hintContent = '<small class="form-text text-muted">'+hintText+'</small>';
+        $('.restrictedText').after(hintContent);
+
+        // The function you currently have
+        $('.restrictedText').keypress(function (e) {
+            var allowedChars = new RegExp("^[a-zA-Z0-9 &\-]+$");
+            var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+            if (allowedChars.test(str)) {
+                return true;
+            }
+            e.preventDefault();
+            return false;
+        }).keyup(function() {
+            // the addition, which whill check the value after a keyup (triggered by Ctrl+V)
+            // We take the same regex as for allowedChars, but we add ^ after the first bracket : it means "all character BUT these"
+            var forbiddenChars = new RegExp("[^a-zA-Z0-9 &\-]", 'g');
+            if (forbiddenChars.test($(this).val())) {
+                //$(this).val($(this).val().replace(forbiddenChars, ''));
+            }
+        });
+    })
+</script>

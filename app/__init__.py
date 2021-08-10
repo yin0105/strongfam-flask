@@ -339,7 +339,6 @@ def activities():
 def joinin():
     form = MessageForm(request.form)
     crsr.execute('select subjectcode, shortdesc from messagesubj where active=true and menusequence is not null order by menusequence') 
-    #fetch all rows and store as a set of tuples 
     subjects_list = crsr.fetchall()
 
     return render_template("joinin.html",\
@@ -727,20 +726,26 @@ def references():
  
 @app.route("/contactus/")
 def contactus():
+    form = MessageForm(request.form)
+    crsr.execute('select subjectcode, shortdesc from messagesubj where active=true and menusequence is not null order by menusequence') 
+    subjects_list = crsr.fetchall()
+
     return render_template("contactus.html",\
-    projname = projname,\
-    copyrightmsg = copyrightmsg,\
-    projaddr1 = projaddr1,\
-    projaddr2 = projaddr2,\
-    telephonenr = telephonenr,\
-    contactus_itemtxt1 = contactus_itemtxt[0],\
-    contactus_itemtxt2 = contactus_itemtxt[1],\
-    contactus_itemtxt3 = contactus_itemtxt[2],\
-    contactus_itemtxt4 = contactus_itemtxt[3],\
-    contactus_itemtxt5 = contactus_itemtxt[4],\
-    contactus_itemtxt6 = contactus_itemtxt[5],\
-    footer_itemtxt1 = footer_itemtxt[0],\
-    footer_itemtxt2 = footer_itemtxt[1])
+        form = form,\
+        subjects_list = subjects_list,\
+        projname = projname,\
+        copyrightmsg = copyrightmsg,\
+        projaddr1 = projaddr1,\
+        projaddr2 = projaddr2,\
+        telephonenr = telephonenr,\
+        contactus_itemtxt1 = contactus_itemtxt[0],\
+        contactus_itemtxt2 = contactus_itemtxt[1],\
+        contactus_itemtxt3 = contactus_itemtxt[2],\
+        contactus_itemtxt4 = contactus_itemtxt[3],\
+        contactus_itemtxt5 = contactus_itemtxt[4],\
+        contactus_itemtxt6 = contactus_itemtxt[5],\
+        footer_itemtxt1 = footer_itemtxt[0],\
+        footer_itemtxt2 = footer_itemtxt[1])
  
 @app.route("/terms/")
 def terms():

@@ -225,7 +225,6 @@
     $(document).ready(function() {
         $('#messageThanks').hide();
         $('.modal-header').on('mousedown', function(downEvt) {
-            console.log("modal-header: mousedown");
             var $draggable = $(this);
             var x = downEvt.pageX - $draggable.offset().left,
                 y = downEvt.pageY - $draggable.offset().top;
@@ -250,18 +249,22 @@
             $('#subjectForm.is-invalid').removeClass('is-invalid');
             $('.alert_msg').html('');
             $('.alert').hide();
+            $('#subjectForm .is-invalid').removeClass('is-invalid');
+            $('#subjectForm .is-valid').removeClass('is-valid');
 
-            console.log("send_message = ", url);
             $.ajax({
                 type: "POST",
                 url: url,
                 data: $('#subjectForm').serialize(), // serializes the form's elements.
                 success: function (resp) {
                     if(resp.status == 'success'){
-                        $('#messageThanks').show();
+                        $('#messageThanks').fadeIn();
+                        setTimeout(() => {
+                            $('#messageThanks').fadeOut();
+                        }, 3000);
+                        document.getElementById("subjectForm").reset();                        
                     } else {                            
                         var errors = resp.errors;
-                        console.log("error = ", resp);
                         var error_list = '<ul>';
                         $.each(errors, function(key, error){
                             if(key !== 'undefined' && key !== 'csrf_token') {
@@ -273,19 +276,17 @@
                             }                                
                         });                          
                         error_list += "</ul>";
-                        //$('.alert-danger').find('.alert_msg').html(resp.message);                            
+                        $('.alert-danger').find('.alert_msg').html(resp.message);                            
                         $('.alert-danger').find('.alert_msg').html(error_list);
                         $('.alert-danger').show();
-                        console.log("1 : ", $('#subjectForm.is-invalid'));
-                        console.log("1 : ", $('#subjectForm.is-invalid').first());
-                        $('html,body').animate({scrollTop: $('#subjectForm.is-invalid').first().offset().top - 100},'slow');
+                        $('html,body').animate({scrollTop: $('#subjectForm .is-invalid').first().offset().top - 100},'slow');
                     }
 
-                    $('html,body').animate({scrollTop: $('.alert').first().offset().top - 100},'slow');
+                    // $('html,body').animate({scrollTop: $('.alert').first().offset().top - 100},'slow');
                 },
                 
                 error: function(resp) {
-                    console.log("22:: errors = ", resp);
+                    console.log("errors = ", resp);
                 },
             });
             e.preventDefault(); // block the traditional submission of the form.
