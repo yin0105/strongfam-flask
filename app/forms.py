@@ -83,7 +83,7 @@ class sendDocumentForm(FlaskForm):
 
 class MessageForm(FlaskForm):
     class Meta:
-        csrf_time_limit = 604800
+        csrf_time_limit = 604800 
     
     # subject = SelectField('Select a subject', validators=[validators.optional()], validate_choice=False)
     visname = StringField('Name ', validators=[validators.DataRequired(), validators.Length(3, 50)], render_kw={"maxlength": "50"})
