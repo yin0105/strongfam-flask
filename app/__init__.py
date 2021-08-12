@@ -31,7 +31,7 @@ mysql = MySQL()
 app.config['MYSQL_DATABASE_USER'] = 'john1'  
 app.config['MYSQL_DATABASE_PASSWORD'] = 'aB22yy98'  
 app.config['MYSQL_DATABASE_DB'] = 'pffp'  
-# app.config['MYSQL_DATABASE_HOST'] = 'localhost'  
+# app.config['MYSQL_DATABASE_HOST'] = 'localhost'   
 app.config['MYSQL_DATABASE_HOST'] = 'mysql.fpproject.dreamhosters.com'  
 mysql.init_app(app)
 
