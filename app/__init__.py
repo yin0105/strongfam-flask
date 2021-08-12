@@ -4,8 +4,8 @@ from datetime import datetime, date
 import time, secrets, re, os
 # import mysql.connector
 from flaskext.mysql import MySQL
-from forms import ShareMyIdeaForm, sendDocumentForm, MessageForm
-# from app.forms import ShareMyIdeaForm, sendDocumentForm 
+# from forms import ShareMyIdeaForm, sendDocumentForm, MessageForm
+from app.forms import ShareMyIdeaForm, sendDocumentForm, MessageForm 
 from werkzeug.utils import secure_filename
 from flask_mail import Mail, Message
 
@@ -20,6 +20,8 @@ app.config['MAIL_USERNAME'] = sender_email
 app.config['MAIL_PASSWORD'] = 'NFEo$*590'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
+app.config['WTF_CSRF_METHODS'] = []
+
 mail = Mail(app)
 
 app.config.from_object(__name__)
@@ -1003,46 +1005,40 @@ def senddocument():
     return render_template('senddocument.html', form=form, existingprojnum=existingprojnum)
 
 
-@app.route('/ajax/send-message', methods=['POST'])
+@app.route('/ajax/send-message', methods=['GET', 'POST'])
 def send_message():
+    print("form = ", request.form)
+    print("data = ", request.data)
     form = MessageForm(request.form)
+    # return request.data
 
-    if form.validate_on_submit():   
+    if form.validate_on_submit(): 
         subject = request.form['subject']
         visname = form.visname.data.title()
         visemail = form.visemail.data
         message = form.message.data
-        # print('INSERT INTO message (subjectcode, visname, visemail, message) VALUES ("{}", "{}", "{}", "{}")'.format(subject, visname, visemail, message))
         crsr.execute('INSERT INTO message (subjectcode, visname, visemail, message) VALUES ("{}", "{}", "{}", "{}")'.format(subject, visname, visemail, message))
         conn.commit()
 
         # Send email
         crsr.execute("SELECT destemail FROM subjectcodeemails WHERE subjectcode='{}'".format(subject))
         recipients = [destemail[0] for (destemail) in crsr.fetchall()]
-        print("recipients = ", recipients)
+
         if len(recipients) > 0:
+
             crsr.execute("SELECT shortdesc, subjectdesc FROM messagesubj WHERE subjectcode='{}'".format(subject))
             messagesubj =  crsr.fetchone()
-            print(messagesubj[0], messagesubj[1])
+
             msg = Message("Automated SFF message - {}".format(messagesubj[0]), sender=(visname, visemail), recipients = recipients, date = datetime.now().strftime('%m/%d/%Y %H:%M %p'))
-            # msg.body = "Hello Flask message sent from Flask-Mail"
             msg.html = '''<h2>{}</h2>
             {}
             <p>
             <div style="font-size: small;">This message was from an unmonitored mailbox.</div>
             '''.format(messagesubj[0], message)
-            mail.send(msg)
-            # '''
-            # (a)Subject:  Automated SFF message - <shortdesc>.
-            # (b)Body:  “SFF received the following message:
-                                #     1.Date:  <subdate>  [formatted as mm/dd/yyyy  hh:mm  AM]
-            #     2.Email subject:  <subjectdesc>  [from table messagesubj]
-                                #     3.From:  <visname>
-                                #     4.Sender email:  <visemail>
-            #     5.Message:  <message>”
-            # (c)In smaller print at the bottom:  ‘This message was from an unmonitored mailbox.’
-            # '''
-            # to_email = destemail[0]
+            try:
+                mail.send(msg)
+            except:
+                return jsonify(status='error', errors='sending email error')
 
         return jsonify(status='success')
     else:
